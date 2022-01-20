@@ -9,7 +9,7 @@ namespace Player
         private Rigidbody2D _rigidbody2D;
         private float _inputX;
         private float _inputY;
-        [SerializeField] private float moveSpeed;
+        [SerializeField] private float moveSpeed = 1;
         public float MoveSpeed => moveSpeed;
 
         private void Start()
