@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSO : MonoBehaviour
+namespace Weapons
 {
-    // Start is called before the first frame update
-    void Start()
+    public class WeaponSO : ScriptableObject
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
