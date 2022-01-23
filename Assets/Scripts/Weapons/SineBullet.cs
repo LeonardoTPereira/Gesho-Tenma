@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Weapons
 {
-    [CreateAssetMenu(fileName = "BulletBehavior", menuName = "Scriptable Objects/Sine Bullet", order = 0)]
+    [CreateAssetMenu(fileName = "SineBulletBehavior", menuName = "Scriptable Objects/Sine Bullet", order = 0)]
     public class SineBullet : AbstractBulletMovement
     {
         private float _angle;

@@ -15,4 +15,6 @@ MonoBehaviour:
   bulletName: Sine
   xSpeed: 1
   ySpeed: 1
+  cooldown: 0.1
+  damage: 1
   bulletMovement: {fileID: 11400000, guid: db1fe8c476b95724b89f19b1852d152a, type: 2}
