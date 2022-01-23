@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5067348146002385790}
   - component: {fileID: 3467785494428099482}
   - component: {fileID: 3693371536464878027}
-  - component: {fileID: 8671404967829350232}
+  - component: {fileID: -4870203813513878479}
   m_Layer: 0
-  m_Name: StraightBullet
-  m_TagString: PlayerBullet
+  m_Name: StraightEnemyBullet
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572a7fa0b3f4d5f49b5207a78b7af5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 11400000, guid: 767e207bae1fd8c428fe28a7c5fca0ec, type: 2}
+  bullet: {fileID: 11400000, guid: afd2d50a2ea485044950177c9741e482, type: 2}
 --- !u!212 &3467785494428099482
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0.7231324, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.24948157, b: 0.13679248, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,7 +119,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &8671404967829350232
+--- !u!70 &-4870203813513878479
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
