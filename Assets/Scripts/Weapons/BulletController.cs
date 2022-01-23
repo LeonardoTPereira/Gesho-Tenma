@@ -29,6 +29,7 @@ namespace Weapons
             else if (CompareTag("EnemyBullet"))
             {
                 if (!col.gameObject.CompareTag("Player")) return;
+                Debug.Log("EnemyShot Collided with Player");
                 PlayerHitEventHandler?.Invoke(null, new BulletHitEventArgs(Bullet));
                 DestroyBullet();
             }
