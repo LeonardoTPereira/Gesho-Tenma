@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMovement : MonoBehaviour
+namespace Boss
 {
-    private Transform playerPosition;
-
-    public float speed;
-
-    void Start()
+    public class BossMovement : MonoBehaviour
     {
-        playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-    }
+        private Transform playerPosition;
 
-    public void FollowPlayerYAxis() 
-    {
-        Vector3 target = new Vector3(playerPosition.position.x, transform.position.y, 0);
-        transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+        public float speed;
+
+        void Start()
+        {
+            playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+
+        public void FollowPlayerYAxis()
+        {
+            Vector3 target = new Vector3(playerPosition.position.x, transform.position.y, 0);
+            transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+        }
     }
 }

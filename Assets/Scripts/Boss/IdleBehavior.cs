@@ -2,31 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleBehavior : StateMachineBehaviour
+namespace Boss
 {
-    public float timer;
-    public float minimunTime;
-    public float maximunTime;
-
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class IdleBehavior : StateMachineBehaviour
     {
-        timer = Random.Range(minimunTime, maximunTime); 
-    }
+        public float timer;
+        public float minimunTime;
+        public float maximunTime;
 
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (timer <= 0)
+        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.SetTrigger("TripleShot");
+            timer = Random.Range(minimunTime, maximunTime);
         }
-        else
+
+        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                animator.SetTrigger("TripleShot");
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
         }
-    }
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+
 
     }
-
 }

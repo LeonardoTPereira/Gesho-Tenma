@@ -2,43 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossPhaseOne : MonoBehaviour
+namespace Boss
 {
-
-    [SerializeField] private GameObject primaryBullet;
-    [SerializeField] private Transform spawnPoint;
-    private bool _canShoot = true;
-
-    public float bulletCooldown = 1f;
-    public int health;
-
-    void Start()
+    public class BossPhaseOne : MonoBehaviour
     {
-        health = 200;
-    }
 
-    void Update()
-    {
-        
-    }
+        [SerializeField] private GameObject primaryBullet;
+        [SerializeField] private Transform spawnPoint;
+        private bool _canShoot = true;
 
-    private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
-    {
-         Instantiate(bulletSo, spawnPoint);
-        
-    }
+        public float bulletCooldown = 1f;
+        public int health;
 
-    public void ShootPrimaryShot()
-    {
-        if (_canShoot)
-            BossShoot(primaryBullet, spawnPoint);
-        StartCoroutine(CountCooldown(bulletCooldown));
-    }
+        void Start()
+        {
+            health = 200;
+        }
 
-    private IEnumerator CountCooldown(float bulletCooldown)
-    {
-        _canShoot = false;
-        yield return new WaitForSeconds(bulletCooldown);
-        _canShoot = true;
+        void Update()
+        {
+
+        }
+
+        private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
+        {
+            Instantiate(bulletSo, spawnPoint);
+
+        }
+
+        public void ShootPrimaryShot()
+        {
+            if (_canShoot)
+            {
+                BossShoot(primaryBullet, spawnPoint);
+                StartCoroutine(CountCooldown(bulletCooldown));
+            }
+        }
+
+        private IEnumerator CountCooldown(float bulletCooldown)
+        {
+            _canShoot = false;
+            yield return new WaitForSeconds(bulletCooldown);
+            _canShoot = true;
+        }
     }
 }

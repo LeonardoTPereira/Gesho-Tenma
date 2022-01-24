@@ -2,30 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntroBehavior : StateMachineBehaviour
+namespace Boss
 {
-    public float timer = 2f;
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class IntroBehavior : StateMachineBehaviour
     {
-    }
+        public float timer = 2f;
 
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (timer <= 0)
+        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //animator.SetTrigger("TripleShot");
-            animator.SetTrigger("Idle");
-
-        }
-        else
-        {
-            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                animator.SetTrigger("Idle");
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
         }
     }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
-
 }

@@ -3,42 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TripleShotBehavior : StateMachineBehaviour
+namespace Boss
 {
-    public float timer = 3f;
-    
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class TripleShotBehavior : StateMachineBehaviour
     {
-        timer = 3f;
-    }
-    
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        Timer(timer, animator);
-        BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
-        BossMovement bossMovement = animator.GetComponent<BossMovement>();
-        
-        bossMovement.FollowPlayerYAxis();
-        boss.ShootPrimaryShot();
-    } 
+        public float timer = 3f;
 
-    
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
-
-
-    public void Timer(float timer, Animator animator)
-    {
-        if (timer <= 0)
+        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.SetTrigger("Idle");
-
+            timer = 3f;
         }
-        else
+
+        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            timer -= Time.deltaTime;
+            Timer(timer, animator);
+            BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
+            BossMovement bossMovement = animator.GetComponent<BossMovement>();
+
+            bossMovement.FollowPlayerYAxis();
+            boss.ShootPrimaryShot();
+        }
+
+        public void Timer(float timer, Animator animator)
+        {
+            if (timer <= 0)
+            {
+                animator.SetTrigger("Idle");
+
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
         }
     }
 }
