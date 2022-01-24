@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletName: Vertical
   xSpeed: 0
-  ySpeed: 1
-  cooldown: 0.5
+  ySpeed: 4
+  cooldown: 0.2
   damage: 4
   bulletMovement: {fileID: 11400000, guid: 9f6942880d26c04448c74db54d2271ed, type: 2}
