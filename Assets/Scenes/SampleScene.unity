@@ -302,6 +302,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2041614309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5813521406290453348, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+  m_PrefabInstance: {fileID: 5813521406510293499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5813521406510293499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,6 +320,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 356418208, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 2041614309}
     - target: {fileID: 5813521404639522363, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -364,6 +379,34 @@ PrefabInstance:
     - target: {fileID: 5813521405155498962, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813521405281581460, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: scale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813521405281581460, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: iconPaddingMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813521405669206952, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813521405669206953, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813521405669206953, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813521405669206953, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813521405669206953, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fec4e03b5f938994b969cd26a70121d9, type: 3}
