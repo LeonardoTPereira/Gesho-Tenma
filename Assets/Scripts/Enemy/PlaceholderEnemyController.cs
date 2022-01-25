@@ -1,18 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
 using Events;
 using UnityEngine;
 using Weapons;
 
-namespace Player
+namespace Enemy
 {
-    public class PlayerController : MonoBehaviour
+    public class PlaceholderEnemyController : MonoBehaviour
     {
-        public static event InitializeHealthEventHandler InitializePlayerHealthEventHandler;
-        public static event TakeDamageEventHandler PlayerTakeDamageEventHandler;
+        public static event InitializeHealthEventHandler InitializeBossHealthEventHandler;
+        public static event TakeDamageEventHandler BossTakeDamageEventHandler;
         [SerializeField] private bool canTakeDamage;
         [SerializeField] private int health = 5;
         [SerializeField] private int maxHealth = 5;
-        private readonly float invincibilityCooldown = 0.5f;
+        private readonly float invincibilityCooldown = 0.1f;
 
         private void Awake()
         {
@@ -21,24 +21,24 @@ namespace Player
 
         private void Start()
         {
-            InitializePlayerHealthEventHandler?.Invoke(this, new InitializeHealthEventArgs(maxHealth));
+            InitializeBossHealthEventHandler?.Invoke(this, new InitializeHealthEventArgs(maxHealth));
         }
-
+        
         private void OnEnable()
         {
-            BulletController.PlayerHitEventHandler += TakeDamage;
+            BulletController.EnemyHitEventHandler += TakeDamage;
         }
 
         private void OnDisable()
         {
-            BulletController.PlayerHitEventHandler -= TakeDamage;
+            BulletController.EnemyHitEventHandler -= TakeDamage;
         }
 
         private void TakeDamage(object sender, BulletHitEventArgs eventArgs)
         {
             if (!CanTakeDamage) return;
             Health -= eventArgs.Bullet.Damage;
-            PlayerTakeDamageEventHandler?.Invoke(this, new TakeDamageEventArgs(eventArgs.Bullet.Damage));
+            BossTakeDamageEventHandler?.Invoke(this, new TakeDamageEventArgs(eventArgs.Bullet.Damage));
             StartCoroutine(CountInvincibilityCooldown());
             Debug.Log($"$Player now has {Health} health points.");
         }
