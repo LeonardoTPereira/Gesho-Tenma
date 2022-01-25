@@ -7,11 +7,12 @@ namespace Boss
     public class BossPhaseOne : MonoBehaviour
     {
 
-        [SerializeField] private GameObject primaryBullet;
-        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private GameObject[] typeOfShoots;
+        [SerializeField] private Transform[] spawnPoints;
+
         private bool _canShoot = true;
 
-        public float bulletCooldown = 1f;
+        public float bulletCooldown = 0.5f;
         public int health;
 
         void Start()
@@ -19,22 +20,19 @@ namespace Boss
             health = 200;
         }
 
-        void Update()
-        {
-
-        }
-
         private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
         {
             Instantiate(bulletSo, spawnPoint);
-
         }
 
         public void ShootPrimaryShot()
         {
             if (_canShoot)
             {
-                BossShoot(primaryBullet, spawnPoint);
+                foreach (Transform spawnPoint in spawnPoints)
+                {
+                    BossShoot(typeOfShoots[0], spawnPoint);
+                }
                 StartCoroutine(CountCooldown(bulletCooldown));
             }
         }

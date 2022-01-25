@@ -16,7 +16,7 @@ namespace Boss
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Timer(timer, animator);
+            Timer(ref timer, animator);
             BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
             BossMovement bossMovement = animator.GetComponent<BossMovement>();
 
@@ -24,7 +24,7 @@ namespace Boss
             boss.ShootPrimaryShot();
         }
 
-        public void Timer(float timer, Animator animator)
+        public float Timer(ref float timer, Animator animator)
         {
             if (timer <= 0)
             {
@@ -33,8 +33,10 @@ namespace Boss
             }
             else
             {
+                Debug.Log("Tempo: "+timer);
                 timer -= Time.deltaTime;
             }
+            return timer;
         }
     }
 }
