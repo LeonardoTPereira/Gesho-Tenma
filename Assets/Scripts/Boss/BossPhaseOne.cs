@@ -7,43 +7,63 @@ namespace Boss
     public class BossPhaseOne : MonoBehaviour
     {
 
-        [SerializeField] private GameObject primaryBullet;
-        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private GameObject[] typeOfShoots;
+        [SerializeField] private Transform[] spawnPoints;
+
         private bool _canShoot = true;
 
-        public float bulletCooldown = 1f;
-        public int health;
+        [SerializeField] private float primaryBulletCooldown = 0.45f;
+        [SerializeField] private float secondaryBulletCooldown = 0.01f;
+        private int health;
 
         void Start()
         {
-            health = 200;
-        }
-
-        void Update()
-        {
-
+            health = 100;
         }
 
         private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
         {
-            Instantiate(bulletSo, spawnPoint);
-
+            Instantiate(bulletSo, spawnPoint.position, spawnPoint.rotation);
         }
 
         public void ShootPrimaryShot()
         {
             if (_canShoot)
             {
-                BossShoot(primaryBullet, spawnPoint);
-                StartCoroutine(CountCooldown(bulletCooldown));
+                foreach (Transform spawnPoint in spawnPoints)
+                {
+                    BossShoot(typeOfShoots[0], spawnPoint);
+                }
+                StartCoroutine(CountCooldown(primaryBulletCooldown));
             }
         }
 
+        public void ShootSecondaryShot()
+        {
+            if (_canShoot)
+            {
+                BossShoot(typeOfShoots[2], spawnPoints[2]);                
+                StartCoroutine(CountCooldown(secondaryBulletCooldown));
+            }
+        }
         private IEnumerator CountCooldown(float bulletCooldown)
         {
             _canShoot = false;
             yield return new WaitForSeconds(bulletCooldown);
             _canShoot = true;
         }
+
+        public int Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                health = value;
+            }
+        }
+
     }
 }
