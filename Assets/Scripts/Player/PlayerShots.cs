@@ -21,6 +21,7 @@ namespace Player
         [SerializeField] private Transform[] secondaryWeapon;
 
         private bool _canShoot;
+        private bool _isHoldingShoot;
         private BulletData _primaryBulletData;
         private BulletData _secondaryBulletData;
         [SerializeField] private float cooldownBonus = 1;
@@ -29,6 +30,7 @@ namespace Player
         private void Awake()
         {
             _canShoot = false;
+		_isHoldingShoot = true;
         }
         
         private void OnEnable()
@@ -50,20 +52,41 @@ namespace Player
 
         public void ShootPrimaryWeapon(InputAction.CallbackContext context)
         {
-            Shoot(_primaryBulletData, PrimaryWeapon);
+            if (context.performed)
+            {
+                _isHoldingShoot = true;
+            }
+            else if (context.canceled)
+            {
+                _isHoldingShoot = false;
+            }
+            StartCoroutine(Shoot(_primaryBulletData, PrimaryWeapon));
         }
     
         public void ShootSecondaryWeapon(InputAction.CallbackContext context)
         {
-            Shoot(_secondaryBulletData, SecondaryWeapon);
+            if (context.performed)
+            {
+                _isHoldingShoot = true;
+            }
+            else if (context.canceled)
+            {
+                _isHoldingShoot = false;
+            }
+            StartCoroutine(Shoot(_secondaryBulletData, SecondaryWeapon));
         }
 
-        private void Shoot(BulletData bullet, Transform[] spawnPoints)
+        private IEnumerator Shoot(BulletData bullet, Transform[] spawnPoints)
         {
-            if (!_canShoot) return;
-            foreach (var spawnPoint in spawnPoints)
+            while (_isHoldingShoot)
             {
-                Instantiate(bullet.BulletObject, spawnPoint);
+                yield return null;
+                if (!_canShoot) continue;
+                foreach (var spawnPoint in spawnPoints)
+                {
+                    Instantiate(bullet.BulletObject, spawnPoint);
+                }
+                StartCoroutine(CountCooldown(bullet.BulletSo.Cooldown));
             }
             StartCoroutine(CountCooldown(bullet.BulletSo.Cooldown));
         }
