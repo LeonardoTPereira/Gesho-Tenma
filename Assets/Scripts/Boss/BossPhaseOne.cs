@@ -12,17 +12,18 @@ namespace Boss
 
         private bool _canShoot = true;
 
-        public float bulletCooldown = 0.5f;
+        public float primaryBulletCooldown = 0.45f;
+        public float secondaryBulletCooldown = 0.01f;
         public int health;
 
         void Start()
         {
-            health = 200;
+            health = 100;
         }
 
         private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
         {
-            Instantiate(bulletSo, spawnPoint);
+            Instantiate(bulletSo, spawnPoint.position, spawnPoint.rotation);
         }
 
         public void ShootPrimaryShot()
@@ -33,10 +34,18 @@ namespace Boss
                 {
                     BossShoot(typeOfShoots[0], spawnPoint);
                 }
-                StartCoroutine(CountCooldown(bulletCooldown));
+                StartCoroutine(CountCooldown(primaryBulletCooldown));
             }
         }
 
+        public void ShootSecondaryShot()
+        {
+            if (_canShoot)
+            {
+                BossShoot(typeOfShoots[2], spawnPoints[2]);                
+                StartCoroutine(CountCooldown(secondaryBulletCooldown));
+            }
+        }
         private IEnumerator CountCooldown(float bulletCooldown)
         {
             _canShoot = false;

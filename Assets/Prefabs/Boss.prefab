@@ -166,9 +166,8 @@ MonoBehaviour:
   - {fileID: 3640756116873183392}
   - {fileID: 5799679386510468900}
   - {fileID: 2531497633846528753}
-  primaryBullet: {fileID: 5067348146002385777, guid: 72563c703af283e4eaf6b7a66fe2de63, type: 3}
-  spawnPoint: {fileID: 2531497633846528753}
-  bulletCooldown: 1
+  primaryBulletCooldown: 0.45
+  secondaryBulletCooldown: 0.18
   health: 200
 --- !u!114 &2531497633080881942
 MonoBehaviour:
