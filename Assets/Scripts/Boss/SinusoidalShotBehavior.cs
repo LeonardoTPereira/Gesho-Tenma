@@ -14,14 +14,13 @@ namespace Boss
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //Timer(ref timer, animator);
             BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
             BossMovement bossMovement = animator.GetComponent<BossMovement>();
 
             bossMovement.FollowPlayerXAxis();
             boss.ShootSecondaryShot();
 
-            if (boss.health <= 66)
+            if (boss.Health <= 66)
             {
                 animator.SetTrigger("Circle");
             }
@@ -30,12 +29,10 @@ namespace Boss
         {
             if (timer <= 0)
             {
-                //animator.SetTrigger("Idle");
                 Debug.Log("Do something");
             }
             else
             {
-                //Debug.Log("Tempo: " + timer);
                 timer -= Time.deltaTime;
             }
             return timer;

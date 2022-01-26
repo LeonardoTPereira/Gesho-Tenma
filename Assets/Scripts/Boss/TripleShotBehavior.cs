@@ -22,7 +22,7 @@ namespace Boss
 
             bossMovement.FollowPlayerXAxis();
             boss.ShootPrimaryShot();
-            if (boss.health <= 132)
+            if (boss.Health <= 132)
             {
                 animator.SetTrigger("Sinusoidal");
             }
