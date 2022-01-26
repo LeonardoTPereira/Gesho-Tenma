@@ -122,10 +122,10 @@ jobs:
           # https://github.com/actions/download-artifact#download-all-artifacts
           name: build-WebGL
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
-          path: build/WebGL
+          path: build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
           branch: gh-pages
-          folder: build
+          folder: build/WebGL
