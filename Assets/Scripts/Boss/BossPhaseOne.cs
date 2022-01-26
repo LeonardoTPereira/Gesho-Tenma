@@ -12,9 +12,9 @@ namespace Boss
 
         private bool _canShoot = true;
 
-        public float primaryBulletCooldown = 0.45f;
-        public float secondaryBulletCooldown = 0.01f;
-        public int health;
+        [SerializeField] private float primaryBulletCooldown = 0.45f;
+        [SerializeField] private float secondaryBulletCooldown = 0.01f;
+        private int health;
 
         void Start()
         {
@@ -52,5 +52,18 @@ namespace Boss
             yield return new WaitForSeconds(bulletCooldown);
             _canShoot = true;
         }
+
+        public int Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                health = value;
+            }
+        }
+
     }
 }
