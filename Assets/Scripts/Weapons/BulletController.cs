@@ -1,3 +1,4 @@
+using System.Collections;
 using Events;
 using UnityEngine;
 
@@ -6,11 +7,12 @@ namespace Weapons
     public class BulletController : MonoBehaviour
     {
         [SerializeField] private BulletSo bullet;
+        [SerializeField] private float timeToDieOutScreen = 0.5f;
         public static event BulletHitEventHandler EnemyHitEventHandler;
         public static event BulletHitEventHandler PlayerHitEventHandler;
 
         public Rigidbody2D RigidBody { get; set; }
-
+        
         private void Start()
         {
             RigidBody = GetComponent<Rigidbody2D>();
@@ -34,9 +36,10 @@ namespace Weapons
             }
         }
 
-        private static void DestroyBullet()
+        private void DestroyBullet()
         {
             //TODO play sfx with a Coroutine and kill after it finishes
+            Destroy(gameObject);
         }
         
         public BulletSo Bullet
@@ -44,5 +47,19 @@ namespace Weapons
             get => bullet;
             set => bullet = value;
         }
+
+        private void OnBecameInvisible()
+        {
+            StartCoroutine(CountCooldown());
+            DestroyBullet();
+        }
+        
+        private IEnumerator CountCooldown()
+        {
+            yield return new WaitForSeconds(TimeToDieOutScreen);
+        }
+        
+        public float TimeToDieOutScreen => timeToDieOutScreen;
+
     }
 }
