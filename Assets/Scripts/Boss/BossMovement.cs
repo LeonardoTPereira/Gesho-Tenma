@@ -8,8 +8,14 @@ namespace Boss
     public class BossMovement : MonoBehaviour
     {
         private Transform playerPosition;
+        private bool isMovingRight;
 
-        public float speed;
+        [SerializeField]private float speed;
+
+        private void Awake()
+        {
+            isMovingRight = true;
+        }
 
         void Start()
         {
@@ -22,5 +28,32 @@ namespace Boss
             transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
         }
 
+        public void MoveLeftToRight()
+        {
+            if (transform.position.x >= 4.0f)
+            {
+                isMovingRight = false;
+            }
+            else if (transform.position.x <= -4.0f) 
+            {
+                isMovingRight = true;
+            }
+
+            transform.position = isMovingRight
+                ? new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z)
+                : new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
+        }
+
+        public float Speed
+        {
+            get
+            {
+                return speed;
+            }
+            set
+            {
+                speed = value;
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Boss
 {
-    public class CircleShot : StateMachineBehaviour
+    public class CircleShotBehavior : StateMachineBehaviour
     {
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
