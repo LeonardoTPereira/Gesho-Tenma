@@ -1,3 +1,6 @@
+using System;
+using Animation;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +13,21 @@ namespace Player
         private float _inputY;
         [SerializeField] private float moveSpeed = 1;
         public float MoveSpeed => moveSpeed;
+        private bool _canMove;
+
+        private void Awake()
+        {
+            _canMove = false;
+        }
+
+        private void OnEnable()
+        {
+            WarningEnd.IntroEndedEventHandler += EnableInput;
+        }
+        private void OnDisable()
+        {
+            WarningEnd.IntroEndedEventHandler -= EnableInput;
+        }
 
         private void Start()
         {
@@ -23,8 +41,14 @@ namespace Player
 
         public void Move(InputAction.CallbackContext context)
         {
+            if (!_canMove) return;
             _inputX = context.ReadValue<Vector2>().x;
             _inputY = context.ReadValue<Vector2>().y;
+        }
+
+        private void EnableInput(object sender, EventArgs eventArgs)
+        {
+            _canMove = true;
         }
     }
 
