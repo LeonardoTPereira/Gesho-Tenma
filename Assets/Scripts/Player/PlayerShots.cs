@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Animation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapons;
@@ -27,8 +29,17 @@ namespace Player
 
         private void Awake()
         {
-            _canShoot = true;
-            _isHoldingShoot = true;
+            _canShoot = false;
+		_isHoldingShoot = true;
+        }
+        
+        private void OnEnable()
+        {
+            WarningEnd.IntroEndedEventHandler += EnableInput;
+        }
+        private void OnDisable()
+        {
+            WarningEnd.IntroEndedEventHandler -= EnableInput;
         }
 
         private void Start()
@@ -77,6 +88,7 @@ namespace Player
                 }
                 StartCoroutine(CountCooldown(bullet.BulletSo.Cooldown));
             }
+            StartCoroutine(CountCooldown(bullet.BulletSo.Cooldown));
         }
 
         private IEnumerator CountCooldown(float bulletCooldown)
@@ -95,6 +107,11 @@ namespace Player
         {
             get => cooldownBonus;
             set => cooldownBonus = value;
+        }
+        
+        private void EnableInput(object sender, EventArgs eventArgs)
+        {
+            _canShoot = true;
         }
     }
 }
