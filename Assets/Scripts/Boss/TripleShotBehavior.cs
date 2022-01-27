@@ -1,46 +1,32 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Boss
 {
-    public class TripleShotBehavior : StateMachineBehaviour
+    public class TripleShotBehavior : BossAttackState
     {
-        public float timer = 3f;
+        private static readonly int Sinusoidal = Animator.StringToHash("Sinusoidal");
+        private static readonly int Idle = Animator.StringToHash("Idle");
 
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            timer = 3f;
-        }
+            CheckTimedTransition(animator, Idle);
 
-        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            Timer(ref timer, animator);
-            BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
-            BossMovement bossMovement = animator.GetComponent<BossMovement>();
-
-            bossMovement.FollowPlayerXAxis();
-            boss.ShootPrimaryShot();
-            if (boss.Health <= 132)
+            if (BossMovement != null)
             {
-                animator.SetTrigger("Sinusoidal");
+                BossMovement.FollowPlayerXAxis();
             }
-        }
 
-        public float Timer(ref float timer, Animator animator)
-        {
-            if (timer <= 0)
+            if (BossPhaseOne != null)
             {
-                animator.SetTrigger("Idle");
-
+                BossPhaseOne.ShootPrimaryShot();
             }
-            else
+            
+            if(BossHealth == null) return;
+            
+            if (BossHealth.Health <= BossHealth.MaxHealth/2)
             {
-                //Debug.Log("Tempo: "+timer);
-                timer -= Time.deltaTime;
+                animator.SetTrigger(Sinusoidal);
             }
-            return timer;
         }
     }
 }

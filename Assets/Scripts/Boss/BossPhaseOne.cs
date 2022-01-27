@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Boss
@@ -15,15 +14,6 @@ namespace Boss
         [SerializeField] private float primaryBulletCooldown = 0.45f;
         [SerializeField] private float secondaryBulletCooldown = 0.01f;
         [SerializeField] private float semiCircleBulletCooldown = 0.02f;
-        private int health;
-
-        public int MaxHealth { get; set; }
-
-        void Start()
-        {
-            MaxHealth = 300;
-            health = MaxHealth;
-        }
 
         private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
         {
@@ -32,32 +22,26 @@ namespace Boss
 
         public void ShootPrimaryShot()
         {
-            if (_canShoot)
+            if (!_canShoot) return;
+            foreach (var spawnPoint in spawnPoints)
             {
-                foreach (Transform spawnPoint in spawnPoints)
-                {
-                    BossShoot(typeOfShoots[0], spawnPoint);
-                }
-                StartCoroutine(CountCooldown(primaryBulletCooldown));
+                BossShoot(typeOfShoots[0], spawnPoint);
             }
+            StartCoroutine(CountCooldown(primaryBulletCooldown));
         }
 
         public void ShootSecondaryShot()
         {
-            if (_canShoot)
-            {
-                BossShoot(typeOfShoots[1], spawnPoints[2]);                
-                StartCoroutine(CountCooldown(secondaryBulletCooldown));
-            }
+            if (!_canShoot) return;
+            BossShoot(typeOfShoots[1], spawnPoints[2]);                
+            StartCoroutine(CountCooldown(secondaryBulletCooldown));
         }
 
         public void ShootSemiCircleShot()
         {
-            if (_canShoot)
-            {
-                BossShoot(typeOfShoots[2], spawnPoints[2]);
-                StartCoroutine(CountCooldown(semiCircleBulletCooldown));
-            }
+            if (!_canShoot) return;
+            BossShoot(typeOfShoots[2], spawnPoints[2]);
+            StartCoroutine(CountCooldown(semiCircleBulletCooldown));
         }
 
         private IEnumerator CountCooldown(float bulletCooldown)
@@ -65,18 +49,6 @@ namespace Boss
             _canShoot = false;
             yield return new WaitForSeconds(bulletCooldown);
             _canShoot = true;
-        }
-        
-        public int Health
-        {
-            get
-            {
-                return health;
-            }
-            set
-            {
-                health = value;
-            }
         }
 
     }
