@@ -15,17 +15,26 @@ namespace Boss
         private void Awake()
         {
             isMovingRight = true;
+            playerPosition = null;
         }
 
         void Start()
         {
-            playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            
+            if (player != null)
+            {
+                playerPosition = player.GetComponent<Transform>();
+            }
         }
 
         public void FollowPlayerXAxis()
         {
-            Vector3 target = new Vector3(playerPosition.position.x, transform.position.y, 0);
-            transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+            if (playerPosition != null)
+            {
+                Vector3 target = new Vector3(playerPosition.position.x, transform.position.y, 0);
+                transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+            }
         }
 
         public void MoveLeftToRight()
