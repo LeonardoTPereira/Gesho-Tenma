@@ -43,7 +43,6 @@ namespace Player
             CheckDeathAndKill();
             PlayerTakeDamageEventHandler?.Invoke(this, new TakeDamageEventArgs(eventArgs.Bullet.Damage));
             StartCoroutine(CountInvincibilityCooldown());
-            Debug.Log($"$Player now has {Health} health points.");
         }
 
         private void CheckDeathAndKill()

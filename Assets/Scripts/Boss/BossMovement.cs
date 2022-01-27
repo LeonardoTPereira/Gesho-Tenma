@@ -15,9 +15,9 @@ namespace Boss
             _playerPosition = null;
         }
 
-        void Start()
+        private void Start()
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            var player = GameObject.FindGameObjectWithTag("Player");
             
             if (player != null)
             {
@@ -27,13 +27,11 @@ namespace Boss
 
         public void FollowPlayerXAxis()
         {
-            if (_playerPosition != null)
-            {
-                var position = transform.position;
-                var target = new Vector3(_playerPosition.position.x, position.y, 0);
-                position = Vector3.Lerp(position, target, speed * Time.deltaTime);
-                transform.position = position;
-            }
+            if (_playerPosition == null) return;
+            var position = transform.position;
+            var target = new Vector3(_playerPosition.position.x, position.y, 0);
+            position = Vector3.Lerp(position, target, speed * Time.deltaTime);
+            transform.position = position;
         }
 
         public void MoveLeftToRight()
