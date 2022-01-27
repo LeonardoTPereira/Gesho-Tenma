@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3693371536464878027}
   - component: {fileID: -4870203813513878479}
   m_Layer: 0
-  m_Name: StraightEnemyBullet 1
+  m_Name: StraightEnemyBullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,8 +84,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -998589671
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.24948157, b: 0.13679248, a: 1}

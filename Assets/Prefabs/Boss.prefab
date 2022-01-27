@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2531497633080881942}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -362695751
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fc9544905ec80984c9a1a7b89d79652d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,9 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfShoots:
-  - {fileID: 5067348146002385777, guid: 72563c703af283e4eaf6b7a66fe2de63, type: 3}
-  - {fileID: 5067348146002385777, guid: 2f03fee3271537c4dbcc498e1f1240fd, type: 3}
-  - {fileID: 959070578328066888, guid: d0934e78557e2384f8eda54b434b69c5, type: 3}
+  - {fileID: 5067348146002385777, guid: df4945cf3c3298f459a4f5e97ada5548, type: 3}
+  - {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
+  - {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
   spawnPoints:
   - {fileID: 3640756116873183392}
   - {fileID: 5799679386510468900}
