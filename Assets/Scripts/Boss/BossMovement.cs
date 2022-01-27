@@ -1,24 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Boss
 {
     public class BossMovement : MonoBehaviour
     {
-        private Transform playerPosition;
+        private Transform _playerPosition;
+        private bool _isMovingRight;
 
-        public float speed;
+        [SerializeField] private float speed;
 
-        void Start()
+        private void Awake()
         {
-            playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            _isMovingRight = true;
+            _playerPosition = null;
         }
 
-        public void FollowPlayerYAxis()
+        private void Start()
         {
-            Vector3 target = new Vector3(playerPosition.position.x, transform.position.y, 0);
-            transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+            var player = GameObject.FindGameObjectWithTag("Player");
+            
+            if (player != null)
+            {
+                _playerPosition = player.GetComponent<Transform>();
+            }
+        }
+
+        public void FollowPlayerXAxis()
+        {
+            if (_playerPosition == null) return;
+            var position = transform.position;
+            var target = new Vector3(_playerPosition.position.x, position.y, 0);
+            position = Vector3.Lerp(position, target, speed * Time.deltaTime);
+            transform.position = position;
+        }
+
+        public void MoveLeftToRight()
+        {
+            if (transform.position.x >= 4.0f)
+            {
+                _isMovingRight = false;
+            }
+            else if (transform.position.x <= -4.0f) 
+            {
+                _isMovingRight = true;
+            }
+
+            var position = transform.position;
+            transform.position = _isMovingRight
+                ? new Vector3(position.x + Speed * Time.deltaTime, position.y, position.z)
+                : new Vector3(position.x - Speed * Time.deltaTime, position.y, position.z);
+        }
+
+        public float Speed
+        {
+            get => speed;
+            set => speed = value;
         }
     }
 }

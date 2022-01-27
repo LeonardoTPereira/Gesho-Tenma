@@ -1,4 +1,4 @@
-using Enemy;
+using Boss;
 using Events;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,14 +11,14 @@ namespace UI
 
         private void OnEnable()
         {
-            PlaceholderEnemyController.InitializeBossHealthEventHandler += SetFullHealth;
-            PlaceholderEnemyController.BossTakeDamageEventHandler += TakeDamage;
+            BossHealth.InitializeBossHealthEventHandler += SetFullHealth;
+            BossHealth.BossTakeDamageEventHandler += TakeDamage;
         }    
     
         private void OnDisable()
         {
-            PlaceholderEnemyController.InitializeBossHealthEventHandler -= SetFullHealth;
-            PlaceholderEnemyController.BossTakeDamageEventHandler -= TakeDamage;
+            BossHealth.InitializeBossHealthEventHandler -= SetFullHealth;
+            BossHealth.BossTakeDamageEventHandler -= TakeDamage;
         }
 
         private void SetFullHealth(object sender, InitializeHealthEventArgs eventArgs)
