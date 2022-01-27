@@ -1,6 +1,5 @@
 ﻿using System;
 using Player;
-using TMPro;
 using UnityEngine;
 
 namespace UI

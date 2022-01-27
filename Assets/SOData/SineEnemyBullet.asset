@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd05cdaac437bcc409132899a5d7f263, type: 3}
-  m_Name: SineBullet
+  m_Name: SineEnemyBullet
   m_EditorClassIdentifier: 
   bulletName: Sine
   xSpeed: 3
-  ySpeed: 3
+  ySpeed: -3
   cooldown: 0.09
   damage: 1
   bulletMovement: {fileID: 11400000, guid: db1fe8c476b95724b89f19b1852d152a, type: 2}
