@@ -14,11 +14,15 @@ namespace Boss
 
         [SerializeField] private float primaryBulletCooldown = 0.45f;
         [SerializeField] private float secondaryBulletCooldown = 0.01f;
+        [SerializeField] private float semiCircleBulletCooldown = 0.02f;
         private int health;
+
+        public int MaxHealth { get; set; }
 
         void Start()
         {
-            health = 100;
+            MaxHealth = 300;
+            health = MaxHealth;
         }
 
         private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
@@ -42,17 +46,27 @@ namespace Boss
         {
             if (_canShoot)
             {
-                BossShoot(typeOfShoots[2], spawnPoints[2]);                
+                BossShoot(typeOfShoots[1], spawnPoints[2]);                
                 StartCoroutine(CountCooldown(secondaryBulletCooldown));
             }
         }
+
+        public void ShootSemiCircleShot()
+        {
+            if (_canShoot)
+            {
+                BossShoot(typeOfShoots[2], spawnPoints[2]);
+                StartCoroutine(CountCooldown(semiCircleBulletCooldown));
+            }
+        }
+
         private IEnumerator CountCooldown(float bulletCooldown)
         {
             _canShoot = false;
             yield return new WaitForSeconds(bulletCooldown);
             _canShoot = true;
         }
-
+        
         public int Health
         {
             get
