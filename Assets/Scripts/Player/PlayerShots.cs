@@ -30,7 +30,7 @@ namespace Player
         private void Awake()
         {
             _canShoot = false;
-		_isHoldingShoot = true;
+		    _isHoldingShoot = true;
         }
         
         private void OnEnable()
@@ -84,11 +84,10 @@ namespace Player
                 if (!_canShoot) continue;
                 foreach (var spawnPoint in spawnPoints)
                 {
-                    Instantiate(bullet.BulletObject, spawnPoint);
+                    Instantiate(bullet.BulletObject, spawnPoint.position, spawnPoint.rotation);
                 }
                 StartCoroutine(CountCooldown(bullet.BulletSo.Cooldown));
             }
-            StartCoroutine(CountCooldown(bullet.BulletSo.Cooldown));
         }
 
         private IEnumerator CountCooldown(float bulletCooldown)

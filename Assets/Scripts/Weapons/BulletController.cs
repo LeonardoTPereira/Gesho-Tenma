@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Events;
 using UnityEngine;
@@ -30,8 +31,15 @@ namespace Weapons
             else if (CompareTag("EnemyBullet"))
             {
                 if (!col.gameObject.CompareTag("Player")) return;
-                Debug.Log("EnemyShot Collided with Player");
                 PlayerHitEventHandler?.Invoke(null, new BulletHitEventArgs(Bullet));
+                DestroyBullet();
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Block"))
+            {
                 DestroyBullet();
             }
         }
@@ -48,12 +56,6 @@ namespace Weapons
             set => bullet = value;
         }
 
-        private void OnBecameInvisible()
-        {
-            StartCoroutine(CountCooldown());
-            DestroyBullet();
-        }
-        
         private IEnumerator CountCooldown()
         {
             yield return new WaitForSeconds(TimeToDieOutScreen);
