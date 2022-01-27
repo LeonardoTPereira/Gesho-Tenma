@@ -1,31 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Boss
 {
     public class SinusoidalShotBehavior : StateMachineBehaviour
     {
-        public float timer = 3f;
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        private static readonly int Circle = Animator.StringToHash("Circle");
+        public float Timer { get; set; } = 3f;
+
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            timer = 3f;
+            Timer = 3f;
         }
 
-        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
-            BossMovement bossMovement = animator.GetComponent<BossMovement>();
+            var bossHealth = animator.GetComponent<BossHealth>();
+            var bossMovement = animator.GetComponent<BossMovement>();
+            var bossPhaseOne = animator.GetComponent<BossPhaseOne>();
 
             bossMovement.FollowPlayerXAxis();
-            boss.ShootSecondaryShot();
+            bossPhaseOne.ShootSecondaryShot();
 
-            if (boss.Health <= 66)
+            if (bossHealth.Health <= bossHealth.MaxHealth/3)
             {
-                animator.SetTrigger("Circle");
+                animator.SetTrigger(Circle);
             }
         }
-        public float Timer(ref float timer, Animator animator)
+        public float UpdateCountdown(ref float timer, Animator animator)
         {
             if (timer <= 0)
             {

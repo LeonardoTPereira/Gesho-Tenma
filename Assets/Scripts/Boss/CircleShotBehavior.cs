@@ -1,32 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Boss
 {
     public class CircleShotBehavior : StateMachineBehaviour
     {
-        public float timer = 3f;
+        private static readonly int Death = Animator.StringToHash("Death");
+        public float Timer { get; set; } = 3f;
 
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            timer = 3f;
+            Timer = 3f;
         }
 
-        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
-            BossMovement bossMovement = animator.GetComponent<BossMovement>();
+            var bossHealth = animator.GetComponent<BossHealth>();
+            var bossMovement = animator.GetComponent<BossMovement>();
+            var bossPhaseOne = animator.GetComponent<BossPhaseOne>();
 
             //bossMovement.MoveLeftToRight();
-            boss.ShootSemiCircleShot();
+            bossPhaseOne.ShootSemiCircleShot();
 
-            if (boss.Health <= 0)
+            if (bossHealth.Health <= 0)
             {
-                animator.SetTrigger("Death");
+                animator.SetTrigger(Death);
             }
         }
-        public float Timer(ref float timer, Animator animator)
+        public float UpdateCountdown(ref float timer, Animator animator)
         {
             if (timer <= 0)
             {

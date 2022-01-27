@@ -3,25 +3,26 @@ using Events;
 using UnityEngine;
 using Weapons;
 
-namespace Enemy
+namespace Boss
 {
-    public class PlaceholderEnemyController : MonoBehaviour
+    public class BossHealth : MonoBehaviour
     {
         public static event InitializeHealthEventHandler InitializeBossHealthEventHandler;
         public static event TakeDamageEventHandler BossTakeDamageEventHandler;
         [SerializeField] private bool canTakeDamage;
         [SerializeField] private int health = 5;
-        [SerializeField] private int maxHealth = 5;
-        private readonly float invincibilityCooldown = 0.1f;
+        public int MaxHealth { get; } = 300;
+        private const float InvincibilityCooldown = 0.1f;
 
         private void Awake()
         {
             CanTakeDamage = true;
+            Health = MaxHealth;
         }
 
         private void Start()
         {
-            InitializeBossHealthEventHandler?.Invoke(this, new InitializeHealthEventArgs(maxHealth));
+            InitializeBossHealthEventHandler?.Invoke(this, new InitializeHealthEventArgs(MaxHealth));
         }
         
         private void OnEnable()
@@ -40,13 +41,12 @@ namespace Enemy
             Health -= eventArgs.Bullet.Damage;
             BossTakeDamageEventHandler?.Invoke(this, new TakeDamageEventArgs(eventArgs.Bullet.Damage));
             StartCoroutine(CountInvincibilityCooldown());
-            Debug.Log($"$Player now has {Health} health points.");
         }
         
         private IEnumerator CountInvincibilityCooldown()
         {
             CanTakeDamage = false;
-            yield return new WaitForSeconds(invincibilityCooldown);
+            yield return new WaitForSeconds(InvincibilityCooldown);
             CanTakeDamage = true;
         }
         

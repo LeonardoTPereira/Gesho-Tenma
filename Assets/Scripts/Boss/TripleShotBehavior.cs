@@ -1,38 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Boss
 {
     public class TripleShotBehavior : StateMachineBehaviour
     {
-        public float timer = 3f;
+        private float _timer = 3f;
+        private static readonly int Sinusoidal = Animator.StringToHash("Sinusoidal");
+        private static readonly int Idle = Animator.StringToHash("Idle");
 
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            timer = 3f;
+            _timer = 3f;
         }
 
-        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Timer(ref timer, animator);
-            BossPhaseOne boss = animator.GetComponent<BossPhaseOne>();
-            BossMovement bossMovement = animator.GetComponent<BossMovement>();
+            UpdateCountdown(ref _timer, animator);
+            var bossHealth = animator.GetComponent<BossHealth>();
+            var bossMovement = animator.GetComponent<BossMovement>();
+            var bossPhaseOne = animator.GetComponent<BossPhaseOne>();
 
             bossMovement.FollowPlayerXAxis();
-            boss.ShootPrimaryShot();
-            if (boss.Health <= 132)
+            bossPhaseOne.ShootPrimaryShot();
+            if (bossHealth.Health <= bossHealth.MaxHealth/2)
             {
-                animator.SetTrigger("Sinusoidal");
+                animator.SetTrigger(Sinusoidal);
             }
         }
 
-        public float Timer(ref float timer, Animator animator)
+        private static float UpdateCountdown(ref float timer, Animator animator)
         {
             if (timer <= 0)
             {
-                animator.SetTrigger("Idle");
+                animator.SetTrigger(Idle);
 
             }
             else
