@@ -8,7 +8,10 @@ namespace Boss
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //bossMovement.MoveLeftToRight();
+            if (BossMovement != null)
+            {
+                BossMovement.MoveLeftToRight();
+            }
             if (BossPhaseOne != null)
             {
                 BossPhaseOne.ShootSemiCircleShot();

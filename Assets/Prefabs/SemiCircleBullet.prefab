@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2541066570648247529}
   m_Layer: 0
   m_Name: SemiCircleBullet
-  m_TagString: PlayerBullet
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 11400000, guid: e6e589a2fc6e22f48b5f6eb4c04795ce, type: 2}
+  timeToDieOutScreen: 0.5
 --- !u!212 &8880420473529344931
 SpriteRenderer:
   m_ObjectHideFlags: 0

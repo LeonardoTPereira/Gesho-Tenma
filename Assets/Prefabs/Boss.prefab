@@ -161,13 +161,14 @@ MonoBehaviour:
   typeOfShoots:
   - {fileID: 5067348146002385777, guid: df4945cf3c3298f459a4f5e97ada5548, type: 3}
   - {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
-  - {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
+  - {fileID: 959070578328066888, guid: d0934e78557e2384f8eda54b434b69c5, type: 3}
   spawnPoints:
   - {fileID: 3640756116873183392}
   - {fileID: 5799679386510468900}
   - {fileID: 2531497633846528753}
   primaryBulletCooldown: 0.45
   secondaryBulletCooldown: 0.18
+  semiCircleBulletCooldown: 0.02
 --- !u!114 &2531497633080881942
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -536,6 +536,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2531497633080881941, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
+      propertyPath: semiCircleBulletCooldown
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531497633080881941, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
+      propertyPath: typeOfShoots.Array.data[1]
+      value: 
+      objectReference: {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
 --- !u!1 &1670753063 stripped

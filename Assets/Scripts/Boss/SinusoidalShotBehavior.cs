@@ -19,7 +19,7 @@ namespace Boss
             }
 
             if(BossHealth == null) return;
-            if (BossHealth.Health <= BossHealth.MaxHealth/3)
+            if (BossHealth.Health <= BossHealth.MaxHealth*0.3)
             {
                 animator.SetTrigger(Circle);
             }
