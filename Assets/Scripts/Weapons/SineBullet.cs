@@ -10,7 +10,7 @@ namespace Weapons
         {
             var angle = 0.0f;
             var angleStep = 10f;
-            while (true)
+            while (bulletController!=null)
             {
                 var directionX = SinMovement(angle);
                 var directionY = 1;
@@ -18,7 +18,7 @@ namespace Weapons
                 var moveDirection = new Vector3(directionX, directionY, 0f);
 
 
-                angleStep *= Mathf.Pow(-1, (int)angle / 360);
+                angleStep *= Mathf.Pow(-1, angle / 360);
                 angle += angleStep;
                 
 
@@ -26,6 +26,8 @@ namespace Weapons
             
                 yield return new WaitForSeconds(0.05f);
             }
+
+            yield return null;
         }
 
         private float SinMovement(float angle)
