@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 11400000, guid: afd2d50a2ea485044950177c9741e482, type: 2}
-  timeToDieOutScreen: 0.5
+  timeToDieOutScreen: 1
 --- !u!212 &3467785494428099482
 SpriteRenderer:
   m_ObjectHideFlags: 0
