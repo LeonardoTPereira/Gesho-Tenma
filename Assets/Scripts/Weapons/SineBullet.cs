@@ -18,7 +18,7 @@ namespace Weapons
                 var moveDirection = new Vector3(directionX, directionY, 0f);
 
 
-                angleStep *= Mathf.Pow(-1, angle / 360);
+                angleStep *= Mathf.Pow(-1, (float)((int)angle / 360));
                 angle += angleStep;
                 
 
