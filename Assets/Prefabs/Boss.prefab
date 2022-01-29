@@ -214,9 +214,11 @@ MonoBehaviour:
   - {fileID: 5799679386510468900}
   - {fileID: 2985258949257945611}
   - {fileID: 2531497633846528753}
+  - {fileID: 6791249167369848884}
+  - {fileID: 3659386808235485295}
   primaryBulletCooldown: 1
   secondaryBulletCooldown: 0.18
-  semiCircleBulletCooldown: 0.02
+  semiCircleBulletCooldown: 0.04
 --- !u!114 &2531497633080881942
 MonoBehaviour:
   m_ObjectHideFlags: 0
