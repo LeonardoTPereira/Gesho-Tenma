@@ -13,6 +13,10 @@ namespace Boss
         [SerializeField] private int health;
         public int MaxHealth { get; } = 300;
         private const float InvincibilityCooldown = 0.1f;
+        private ParticleSystem _damageParticleSystem;
+        [SerializeField] private GameObject damageParticle;
+
+        public GameObject DamageParticle => damageParticle;
 
         private void Awake()
         {
@@ -22,6 +26,7 @@ namespace Boss
 
         private void Start()
         {
+            _damageParticleSystem = DamageParticle.GetComponent<ParticleSystem>();
             InitializeBossHealthEventHandler?.Invoke(this, new InitializeHealthEventArgs(MaxHealth));
         }
         
@@ -39,6 +44,7 @@ namespace Boss
         {
             if (!CanTakeDamage) return;
             Health -= eventArgs.Bullet.Damage;
+            _damageParticleSystem.Play();
             BossTakeDamageEventHandler?.Invoke(this, new TakeDamageEventArgs(eventArgs.Bullet.Damage));
             StartCoroutine(CountInvincibilityCooldown());
         }
