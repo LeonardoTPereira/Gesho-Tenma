@@ -10,7 +10,7 @@ namespace Boss
         {
             if (BossMovement != null)
             {
-                BossMovement.FollowPlayerXAxis();
+                BossMovement.MoveLeftToRight();
             }
 
             if (BossPhaseOne != null)

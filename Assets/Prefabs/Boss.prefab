@@ -210,6 +210,7 @@ MonoBehaviour:
   - {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
   - {fileID: 959070578328066888, guid: d0934e78557e2384f8eda54b434b69c5, type: 3}
   - {fileID: 5067348146002385777, guid: 1f9fd2dac01e15845b445230328c7ade, type: 3}
+  - {fileID: 5067348146002385777, guid: 77ba2a4da86d95d4c850da4f2d5322f9, type: 3}
   spawnPoints:
   - {fileID: 3640756116873183392}
   - {fileID: 5799679386510468900}
@@ -218,6 +219,7 @@ MonoBehaviour:
   - {fileID: 6791249167369848884}
   - {fileID: 3659386808235485295}
   primaryBulletCooldown: 1
+  followStraitBulletCooldown: 1
   secondaryBulletCooldown: 0.18
   semiCircleBulletCooldown: 0.04
 --- !u!114 &2531497633080881942
