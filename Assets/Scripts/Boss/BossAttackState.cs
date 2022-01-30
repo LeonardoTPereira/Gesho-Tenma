@@ -26,5 +26,6 @@ namespace Boss
                 animator.SetTrigger(triggerId);
             }
         }
+
     }
 }
