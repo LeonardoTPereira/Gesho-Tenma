@@ -23,7 +23,7 @@ namespace Boss
             
             if(BossHealth == null) return;
             
-            if (BossHealth.Health <= BossHealth.MaxHealth/2)
+            if (BossHealth.Health <= BossHealth.MaxHealth*0.6)
             {
                 animator.SetTrigger(Sinusoidal);
             }

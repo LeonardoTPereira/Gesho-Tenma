@@ -5,7 +5,6 @@ namespace Boss
 {
     public class BossPhaseOne : MonoBehaviour
     {
-
         [SerializeField] private GameObject[] typeOfShoots;
         [SerializeField] private Transform[] spawnPoints;
 
@@ -23,9 +22,9 @@ namespace Boss
         public void ShootPrimaryShot()
         {
             if (!_canShoot) return;
-            foreach (var spawnPoint in spawnPoints)
+            for (int i = 0; i < 4; i++)
             {
-                BossShoot(typeOfShoots[0], spawnPoint);
+                BossShoot(typeOfShoots[0], spawnPoints[i]);
             }
             StartCoroutine(CountCooldown(primaryBulletCooldown));
         }
@@ -34,6 +33,7 @@ namespace Boss
         {
             if (!_canShoot) return;
             BossShoot(typeOfShoots[1], spawnPoints[2]);                
+            BossShoot(typeOfShoots[1], spawnPoints[3]);                
             StartCoroutine(CountCooldown(secondaryBulletCooldown));
         }
 
@@ -41,6 +41,7 @@ namespace Boss
         {
             if (!_canShoot) return;
             BossShoot(typeOfShoots[2], spawnPoints[2]);
+            BossShoot(typeOfShoots[2], spawnPoints[3]);
             StartCoroutine(CountCooldown(semiCircleBulletCooldown));
         }
 

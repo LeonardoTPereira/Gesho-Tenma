@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 11400000, guid: 7620518c19dbbd449affde6686ba1997, type: 2}
-  timeToDieOutScreen: 0.5
+  timeToDieOutScreen: 0.8
 --- !u!212 &3467785494428099482
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -398,11 +398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6121629550143812848, guid: 5b3179d64ad86d64992e3de8592163c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.34
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 6121629550143812848, guid: 5b3179d64ad86d64992e3de8592163c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.74
+      value: -4.01
       objectReference: {fileID: 0}
     - target: {fileID: 6121629550143812848, guid: 5b3179d64ad86d64992e3de8592163c6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -823,6 +823,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2531497633080881941, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
+      propertyPath: semiCircleBulletCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531497633080881941, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
+      propertyPath: typeOfShoots.Array.data[1]
+      value: 
+      objectReference: {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
 --- !u!1 &1670753063 stripped
