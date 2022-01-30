@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Boss
 {
@@ -9,7 +10,8 @@ namespace Boss
         protected BossHealth BossHealth;
         protected BossMovement BossMovement;
         protected BossPhaseOne BossPhaseOne;
-        
+        public static event EventHandler BossPowerUpEventHandler;
+        public static event EventHandler BossDeathEventHandler;
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             Timer = 3f;
@@ -25,6 +27,15 @@ namespace Boss
             {
                 animator.SetTrigger(triggerId);
             }
+        }
+
+        protected void InvokePowerUpEvent()
+        {
+            BossPowerUpEventHandler?.Invoke(null, EventArgs.Empty);
+        }    
+        protected void InvokeDeathEvent()
+        {
+            BossDeathEventHandler?.Invoke(null, EventArgs.Empty);
         }
 
     }
