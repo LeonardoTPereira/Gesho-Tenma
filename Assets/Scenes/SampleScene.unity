@@ -509,9 +509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 64
-  m_RefResolutionX: 1280
-  m_RefResolutionY: 720
+  m_AssetsPPU: 32
+  m_RefResolutionX: 640
+  m_RefResolutionY: 360
   m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 1
@@ -856,35 +856,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2531497633080881941, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
-      propertyPath: semiCircleBulletCooldown
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531497633080881941, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
-      propertyPath: typeOfShoots.Array.data[1]
-      value: 
-      objectReference: {fileID: 5067348146002385777, guid: 658b1ea049093714485b6e48a48df74f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
---- !u!1 &1670753063 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2531497633080881936, guid: 463b91c8047e8a549b6f925f5d766302, type: 3}
-  m_PrefabInstance: {fileID: 1438844335}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1670753064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670753063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b8f322c835a40bab6199b7e737bd91a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canTakeDamage: 0
-  health: 5
 --- !u!1001 &2607036395271096074
 PrefabInstance:
   m_ObjectHideFlags: 0
