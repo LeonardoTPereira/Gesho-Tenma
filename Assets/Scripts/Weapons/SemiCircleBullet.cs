@@ -13,10 +13,10 @@ namespace Weapons
 
         private void Awake()
         {
+            _startAngle = 90;
+            _endAngle = 300;
             _angle = _startAngle;
-            _startAngle = 0;
-            _endAngle = 270;
-            _bulletAmount = 8;
+            _bulletAmount = 5;
         }
 
         public override IEnumerator Move(Vector2 speed, BulletController bulletController)
@@ -36,7 +36,7 @@ namespace Weapons
             }
             
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(10f);
         }
 
         private float SinMovement()
