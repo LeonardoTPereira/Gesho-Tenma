@@ -9,8 +9,10 @@ namespace Boss
         [SerializeField] private Transform[] spawnPoints;
 
         private bool _canShoot = true;
+        private bool _canShootExtra = true;
 
         [SerializeField] private float primaryBulletCooldown = 0.45f;
+        [SerializeField] private float followStraitBulletCooldown = 1f;
         [SerializeField] private float secondaryBulletCooldown = 0.01f;
         [SerializeField] private float semiCircleBulletCooldown = 0.02f;
 
@@ -27,6 +29,14 @@ namespace Boss
                 BossShoot(typeOfShoots[0], spawnPoints[i]);
             }
             StartCoroutine(CountCooldown(primaryBulletCooldown));
+        }
+
+        public void ShootFollowStraightShot()
+        {
+            if (!_canShootExtra) return;
+            BossShoot(typeOfShoots[3], spawnPoints[4]);
+            BossShoot(typeOfShoots[3], spawnPoints[5]);
+            StartCoroutine(CountCooldownExtra(followStraitBulletCooldown));
         }
 
         public void ShootSecondaryShot()
@@ -52,5 +62,21 @@ namespace Boss
             _canShoot = true;
         }
 
+        private IEnumerator CountCooldownExtra(float bulletCooldown)
+        {
+            _canShootExtra = false;
+            yield return new WaitForSeconds(bulletCooldown);
+            _canShootExtra = true;
+        }
+
+        /*
+                 private void InicializeBulletSO(Transform[] typeOfShoots)
+        {
+            for (int i = 0; i < typeOfShoots.Length; i++)
+            {
+                spawnPointsSO[i] = typeOfShoots[i].GetComponent<BulletController>().Bullet;
+            }
+        }
+        */
     }
 }
