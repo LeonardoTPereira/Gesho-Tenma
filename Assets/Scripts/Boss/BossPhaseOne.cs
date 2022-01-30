@@ -47,6 +47,14 @@ namespace Boss
             StartCoroutine(CountCooldown(secondaryBulletCooldown));
         }
 
+        public void ShootSpiralShot()
+        {
+            if (!_canShootExtra) return;
+            BossShoot(typeOfShoots[4], spawnPoints[1]);
+            //BossShoot(typeOfShoots[4], spawnPoints[5]);
+            StartCoroutine(CountCooldownExtra(followStraitBulletCooldown));
+        }
+
         public void ShootSemiCircleShot()
         {
             if (!_canShoot) return;
