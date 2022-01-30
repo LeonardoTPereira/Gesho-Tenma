@@ -10,14 +10,14 @@ namespace Boss
         public static event InitializeHealthEventHandler InitializeBossHealthEventHandler;
         public static event TakeDamageEventHandler BossTakeDamageEventHandler;
         [SerializeField] private bool canTakeDamage;
-        [SerializeField] private int health = 5;
+        [SerializeField] private int health;
         public int MaxHealth { get; } = 300;
         private const float InvincibilityCooldown = 0.1f;
 
         private void Awake()
         {
             CanTakeDamage = true;
-            Health = MaxHealth;
+            Health = 300;
         }
 
         private void Start()
