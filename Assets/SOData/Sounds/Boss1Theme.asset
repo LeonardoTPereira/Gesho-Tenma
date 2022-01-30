@@ -15,11 +15,11 @@ MonoBehaviour:
   pitchMin: 0
   pitchMax: 0
   maxRange: 3000
-  audioMode: 0
+  audioMode: 1
   spatialBlend: 1
   pitch: 1
-  volume: 0.5
+  volume: 1
   playOnAwake: 0
-  loop: 0
-  output: {fileID: 0}
-  clip: {fileID: 0}
+  loop: 1
+  output: {fileID: -1940039994764492429, guid: e0a0f4957fd0c76419f5369d69014afe, type: 2}
+  clip: {fileID: 8300000, guid: 425d3258c1db25445a81937d2e13f51c, type: 3}
