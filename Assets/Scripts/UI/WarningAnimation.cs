@@ -11,15 +11,15 @@ namespace UI
 
         private void OnEnable()
         {
-            BattleScene.BattleStartEventHandler += ShowGameOver;
+            BattleScene.BattleStartEventHandler += ShowWarning;
         }    
     
         private void OnDisable()
         {
-            BattleScene.BattleStartEventHandler -= ShowGameOver;
+            BattleScene.BattleStartEventHandler -= ShowWarning;
         }
 
-        private void ShowGameOver(object sender, EventArgs eventArgs)
+        private void ShowWarning(object sender, EventArgs eventArgs)
         {
             Warning.SetActive(true);
         }
