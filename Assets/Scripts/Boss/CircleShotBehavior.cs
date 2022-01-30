@@ -18,11 +18,11 @@ namespace Boss
             }
             
             if (BossHealth == null) return;
+
+            if (BossHealth.Health > 0) return;
             
-            if (BossHealth.Health <= 0)
-            {
-                animator.SetTrigger(Death);
-            }
+            InvokeDeathEvent();
+            animator.SetTrigger(Death);
         }
     }
 }

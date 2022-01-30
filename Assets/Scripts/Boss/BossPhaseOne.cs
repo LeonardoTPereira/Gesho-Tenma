@@ -9,10 +9,13 @@ namespace Boss
         [SerializeField] private Transform[] spawnPoints;
 
         private bool _canShoot = true;
+        private bool _canShootExtra = true;
 
         [SerializeField] private float primaryBulletCooldown = 0.45f;
+        [SerializeField] private float followStraitBulletCooldown = 1f;
         [SerializeField] private float secondaryBulletCooldown = 0.01f;
         [SerializeField] private float semiCircleBulletCooldown = 0.02f;
+
 
         private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
         {
@@ -29,12 +32,28 @@ namespace Boss
             StartCoroutine(CountCooldown(primaryBulletCooldown));
         }
 
+        public void ShootFollowStraightShot()
+        {
+            if (!_canShootExtra) return;
+            BossShoot(typeOfShoots[3], spawnPoints[4]);
+            BossShoot(typeOfShoots[3], spawnPoints[5]);
+            StartCoroutine(CountCooldownExtra(followStraitBulletCooldown));
+        }
+
         public void ShootSecondaryShot()
         {
             if (!_canShoot) return;
             BossShoot(typeOfShoots[1], spawnPoints[2]);                
             BossShoot(typeOfShoots[1], spawnPoints[3]);                
             StartCoroutine(CountCooldown(secondaryBulletCooldown));
+        }
+
+        public void ShootSpiralShot()
+        {
+            if (!_canShootExtra) return;
+            BossShoot(typeOfShoots[4], spawnPoints[1]);
+            //BossShoot(typeOfShoots[4], spawnPoints[5]);
+            StartCoroutine(CountCooldownExtra(followStraitBulletCooldown));
         }
 
         public void ShootSemiCircleShot()
@@ -45,6 +64,11 @@ namespace Boss
             StartCoroutine(CountCooldown(semiCircleBulletCooldown));
         }
 
+        public void DestroyBoss()
+        {
+            Destroy(this.gameObject);
+        }
+
         private IEnumerator CountCooldown(float bulletCooldown)
         {
             _canShoot = false;
@@ -52,5 +76,11 @@ namespace Boss
             _canShoot = true;
         }
 
+        private IEnumerator CountCooldownExtra(float bulletCooldown)
+        {
+            _canShootExtra = false;
+            yield return new WaitForSeconds(bulletCooldown);
+            _canShootExtra = true;
+        }
     }
 }

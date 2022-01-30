@@ -10,7 +10,7 @@ namespace Boss
         {
             if (BossMovement != null)
             {
-                BossMovement.FollowPlayerXAxis();
+                BossMovement.MoveLeftToRight();
             }
 
             if (BossPhaseOne != null)
@@ -19,10 +19,11 @@ namespace Boss
             }
 
             if(BossHealth == null) return;
-            if (BossHealth.Health <= BossHealth.MaxHealth*0.3)
-            {
-                animator.SetTrigger(Circle);
-            }
+            
+            if (BossHealth.Health > BossHealth.MaxHealth * 0.3) return;
+            
+            InvokePowerUpEvent();
+            animator.SetTrigger(Circle);
         }
     }
 }

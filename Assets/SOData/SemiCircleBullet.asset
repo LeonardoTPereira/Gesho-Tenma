@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SemiCircleBullet
   m_EditorClassIdentifier: 
   bulletName: SemiCircle
-  xSpeed: 3
-  ySpeed: -3
+  xSpeed: 5
+  ySpeed: 9
   cooldown: 1
   damage: 1
   bulletMovement: {fileID: 11400000, guid: 188152dc14b2dff47b0c95e79c7468bd, type: 2}
