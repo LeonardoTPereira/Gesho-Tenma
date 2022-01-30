@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Boss
@@ -30,11 +31,11 @@ namespace Boss
             }
             
             if(BossHealth == null) return;
+
+            if (BossHealth.Health > BossHealth.MaxHealth * 0.6) return;
             
-            if (BossHealth.Health <= BossHealth.MaxHealth*0.6)
-            {
-                animator.SetTrigger(Sinusoidal);
-            }
+            InvokePowerUpEvent();
+            animator.SetTrigger(Sinusoidal);
         }
     }
 }
