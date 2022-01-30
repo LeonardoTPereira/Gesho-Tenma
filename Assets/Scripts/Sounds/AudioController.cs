@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Boss;
+using Events;
+using Player;
 using Scenes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Weapons;
 using Random = UnityEngine.Random;
 
 namespace Sounds
@@ -44,12 +49,22 @@ namespace Sounds
         {
             BattleScene.BattleStartEventHandler += PlayBGM;
             BattleScene.BattleStartEventHandler += PlayWarning;
+            BossHealth.BossTakeDamageEventHandler += PlayEnemyHit;
+            BossAttackState.BossPowerUpEventHandler += PlayBossPowerUp;
+            BossAttackState.BossDeathEventHandler += PlayBossDeath;
+            PlayerController.PlayerTakeDamageEventHandler += PlayPlayerHit;
+            BattleScene.BattleWonEventHandler += PlayFanfare;
         }
         
         private void OnDisable()
         {
             BattleScene.BattleStartEventHandler -= PlayBGM;
             BattleScene.BattleStartEventHandler -= PlayWarning;
+            BossHealth.BossTakeDamageEventHandler -= PlayEnemyHit;
+            BossAttackState.BossPowerUpEventHandler -= PlayBossPowerUp;
+            BossAttackState.BossDeathEventHandler -= PlayBossDeath;
+            PlayerController.PlayerTakeDamageEventHandler -= PlayPlayerHit;
+            BattleScene.BattleWonEventHandler -= PlayFanfare;
         }
 
         private AudioSource AddAudioSourceFromSoundSo(Sound sound)
@@ -71,20 +86,38 @@ namespace Sounds
 
         private void PlayBGM(object sender, EventArgs eventArgs)
         {
-            Debug.Log("Play BGM");
             PlaySound(_audioDictionary["Boss1Theme"]);
+        }
+        private void PlayFanfare(object sender, EventArgs eventArgs)
+        {
+            StopAudio(_audioDictionary["Boss1Theme"]);
+            PlaySound(_audioDictionary["VictoryTheme"]);
         }
         private void PlayWarning(object sender, EventArgs eventArgs)
         {
-            Debug.Log("Play SFX");
             PlayAudioOnce(_audioDictionary["Warning"]);
+        }        
+        private void PlayBossPowerUp(object sender, EventArgs eventArgs)
+        {
+            PlayAudioOnce(_audioDictionary["BossPowerUp"]);
+        }       
+        private void PlayBossDeath(object sender, EventArgs eventArgs)
+        {
+            PlayAudioOnce(_audioDictionary["BossDeath"]);
+        }
+        private void PlayEnemyHit(object sender, TakeDamageEventArgs eventArgs)
+        {
+            PlayAudioOnceRandomizePitch(_audioDictionary["BossDamaged"], eventArgs.Damage);
+        }
+        private void PlayPlayerHit(object sender, TakeDamageEventArgs eventArgs)
+        {
+            PlayAudioOnceRandomizePitch(_audioDictionary["PlayerDeath"], eventArgs.Damage);
         }
 
         private void PlaySound(Audio sound)
         {
             if (sound.Source.isPlaying)
                 return;
-            Debug.Log("Play: "+ sound.Source.clip.name);
             sound.Source.Play();
         }
      
@@ -92,20 +125,20 @@ namespace Sounds
         {
             if (sound.Source == null)
                 return;
-            Debug.Log("Play One Shot"+ sound.Source.clip.name);
             sound.Source.PlayOneShot(sound.Source.clip);
         }
      
-        public void PlayAudioOnceRandomizePitch(AudioSource source, Sound sound)
+        public void PlayAudioOnceRandomizePitch(Audio sound, int pitchOffset)
         {
-            if (source == null)
+            if (sound.Source == null)
                 return;
-            source.pitch = (Random.Range(sound.PitchMin, sound.PitchMax));
-            source.PlayOneShot(source.clip);
+            sound.Source.pitch = sound.Sound.Pitch + pitchOffset;
+            sound.Source.PlayOneShot(sound.Source.clip);
+            sound.Source.pitch = sound.Sound.Pitch;
         }
      
-        public void FadeOutAudio(AudioSource source)
-        { StartCoroutine(StartFade(source, 2, 0)); }
+        public void FadeOutAudio(Audio sound)
+        { StartCoroutine(StartFade(sound.Source, 2, 0)); }
      
         public IEnumerator StartFade(AudioSource fadeSource, float duration, float targetVolume)
         {
@@ -120,11 +153,11 @@ namespace Sounds
             }
         }
      
-        public void StopAudio(AudioSource source)
+        public void StopAudio(Audio sound)
         {
-            if (source == null)
+            if (sound.Source == null)
                 return;
-            source.Stop();
+            sound.Source.Stop();
         }
         
         public List<Sound> SoundEffects => soundEffects;
