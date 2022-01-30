@@ -16,6 +16,7 @@ namespace Boss
         [SerializeField] private float secondaryBulletCooldown = 0.01f;
         [SerializeField] private float semiCircleBulletCooldown = 0.02f;
 
+
         private static void BossShoot(GameObject bulletSo, Transform spawnPoint)
         {
             Instantiate(bulletSo, spawnPoint.position, spawnPoint.rotation);
@@ -63,6 +64,11 @@ namespace Boss
             StartCoroutine(CountCooldown(semiCircleBulletCooldown));
         }
 
+        public void DestroyBoss()
+        {
+            Destroy(this.gameObject);
+        }
+
         private IEnumerator CountCooldown(float bulletCooldown)
         {
             _canShoot = false;
@@ -76,15 +82,5 @@ namespace Boss
             yield return new WaitForSeconds(bulletCooldown);
             _canShootExtra = true;
         }
-
-        /*
-                 private void InicializeBulletSO(Transform[] typeOfShoots)
-        {
-            for (int i = 0; i < typeOfShoots.Length; i++)
-            {
-                spawnPointsSO[i] = typeOfShoots[i].GetComponent<BulletController>().Bullet;
-            }
-        }
-        */
     }
 }
