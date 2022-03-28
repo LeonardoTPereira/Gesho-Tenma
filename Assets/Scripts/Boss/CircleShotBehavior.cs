@@ -10,17 +10,14 @@ namespace Boss
         {
             if (BossMovement != null)
             {
-                BossMovement.MoveLeftToRight();
+                BossMovement.MoveHorizontallyAroundCenter();
             }
             if (BossPhaseOne != null)
             {
                 BossPhaseOne.ShootSemiCircleShot();
             }
-            
             if (BossHealth == null) return;
-
             if (BossHealth.Health > 0) return;
-            
             InvokeDeathEvent();
             animator.SetTrigger(Death);
         }

@@ -5,13 +5,10 @@ namespace Boss
     public class BossMovement : MonoBehaviour
     {
         private Transform _playerPosition;
-        private bool _isMovingRight;
-
         [SerializeField] private float speed;
 
         private void Awake()
         {
-            _isMovingRight = true;
             _playerPosition = null;
         }
 
@@ -34,21 +31,15 @@ namespace Boss
             transform.position = position;
         }
 
-        public void MoveLeftToRight()
+        public void MoveHorizontallyAroundCenter()
         {
-            if (transform.position.x >= 4.0f)
+            if (Mathf.Abs(transform.position.x) > 4)
             {
-                _isMovingRight = false;
+                Speed = -1 * Speed;
             }
-            else if (transform.position.x <= -4.0f) 
-            {
-                _isMovingRight = true;
-            }
-
-            var position = transform.position;
-            transform.position = _isMovingRight
-                ? new Vector3(position.x + Speed * Time.deltaTime, position.y, position.z)
-                : new Vector3(position.x - Speed * Time.deltaTime, position.y, position.z);
+            var bossTransform = transform;
+            var position = bossTransform.position;
+            bossTransform.position = new Vector3(position.x + Speed * Time.deltaTime, position.y, position.z);
         }
 
         public float Speed
