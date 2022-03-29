@@ -21,7 +21,7 @@ namespace Boss
         private void Awake()
         {
             CanTakeDamage = true;
-            Health = 10;
+            Health = MaxHealth;
         }
 
         private void Start()

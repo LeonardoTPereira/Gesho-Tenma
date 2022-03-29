@@ -25,7 +25,5 @@ namespace Boss
                 Timer -= Time.deltaTime;
             }
         }
-
-
     }
 }

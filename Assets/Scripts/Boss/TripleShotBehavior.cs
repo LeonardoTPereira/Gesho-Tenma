@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Boss
@@ -7,8 +6,7 @@ namespace Boss
     {
         private static readonly int Sinusoidal = Animator.StringToHash("Sinusoidal");
         private static readonly int Idle = Animator.StringToHash("Idle");
-
-
+        
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             base.OnStateEnter(animator, stateInfo, layerIndex);

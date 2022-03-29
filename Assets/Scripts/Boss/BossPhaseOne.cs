@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using Weapons;
 
 namespace Boss
 {
     public class BossPhaseOne : MonoBehaviour
     {
-        [SerializeField] private GameObject[] typeOfShoots;
-        [SerializeField] private Transform[] spawnPoints;
+        [SerializeField] private WeaponEnumToPrefab shots;
+        [SerializeField] private WeaponShooterToTransform weaponShooters;
 
         private bool _canShoot = true;
         private bool _canShootExtra = true;
@@ -25,9 +26,17 @@ namespace Boss
         public void ShootPrimaryShot()
         {
             if (!_canShoot) return;
-            for (int i = 0; i < 4; i++)
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Left].ShootersTransforms)
             {
-                BossShoot(typeOfShoots[0], spawnPoints[i]);
+                BossShoot(shots[Weapons.Weapons.Straight], weaponTransform);
+            }
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Right].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.Straight], weaponTransform);
+            }
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Front].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.Straight], weaponTransform);
             }
             StartCoroutine(CountCooldown(primaryBulletCooldown));
         }
@@ -35,32 +44,52 @@ namespace Boss
         public void ShootFollowStraightShot()
         {
             if (!_canShootExtra) return;
-            BossShoot(typeOfShoots[3], spawnPoints[4]);
-            BossShoot(typeOfShoots[3], spawnPoints[5]);
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Back].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.FollowStraight], weaponTransform);
+            }
             StartCoroutine(CountCooldownExtra(followStraitBulletCooldown));
         }
 
         public void ShootSecondaryShot()
         {
             if (!_canShoot) return;
-            BossShoot(typeOfShoots[1], spawnPoints[2]);                
-            BossShoot(typeOfShoots[1], spawnPoints[3]);                
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Left].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.Sine], weaponTransform);
+            }
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Right].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.Sine], weaponTransform);
+            }               
             StartCoroutine(CountCooldown(secondaryBulletCooldown));
         }
 
         public void ShootSpiralShot()
         {
             if (!_canShootExtra) return;
-            BossShoot(typeOfShoots[4], spawnPoints[1]);
-            //BossShoot(typeOfShoots[4], spawnPoints[5]);
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Left].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.Spiral], weaponTransform);
+            }
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Right].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.Spiral], weaponTransform);
+            }
             StartCoroutine(CountCooldownExtra(followStraitBulletCooldown));
         }
 
         public void ShootSemiCircleShot()
         {
             if (!_canShoot) return;
-            BossShoot(typeOfShoots[2], spawnPoints[2]);
-            BossShoot(typeOfShoots[2], spawnPoints[3]);
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Left].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.SemiCircle], weaponTransform);
+            }
+            foreach (var weaponTransform in weaponShooters[WeaponShooter.Right].ShootersTransforms)
+            {
+                BossShoot(shots[Weapons.Weapons.SemiCircle], weaponTransform);
+            }
             StartCoroutine(CountCooldown(semiCircleBulletCooldown));
         }
 
