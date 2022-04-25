@@ -46,7 +46,7 @@ jobs:
       - uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '5.0.3' # SDK Version to use; x will use the latest version of the 3.1 channel
-        
+          
       - name: Install Sonar Scanner
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
         
