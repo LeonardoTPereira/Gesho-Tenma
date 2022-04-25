@@ -16,8 +16,6 @@ jobs:
     # available list of containers here:
     # https://hub.docker.com/r/unityci/editor/tags?page=1&ordering=last_updated&name=ubuntu-2020.1.17f1-base
     container: unityci/editor:ubuntu-2021.3.1f1-webgl-1.0
-    env:
-      DOTNET_ROOT: '/opt/unity/Editor/Data/NetCoreRuntime'
 
     steps:
       - name: Activate unity
@@ -95,7 +93,7 @@ jobs:
             ${{ steps.semantic.outputs.new_release_published == 'true' && format('/v:{0}',steps.semantic.outputs.new_release_version) || '' }} \
             /d:sonar.cs.nunit.reportsPaths=Tests/editmode-results.xml,Tests/playmode-results.xml \
             /d:sonar.cs.opencover.reportsPaths=Tests/GGJ2022-opencov/EditMode/TestCoverageResults_0000.xml,Tests/GGJ2022-opencov/PlayMode/TestCoverageResults_0000.xml
-          $DOTNET_ROOT/dotnet build GGJ2022.sln
+          dotnet build GGJ2022.sln
           ./dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
 
   buildWebGL:
