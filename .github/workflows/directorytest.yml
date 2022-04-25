@@ -1,0 +1,15 @@
+name: Test Directory
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Test Directory Structure
+    runs-on: ubuntu-latest
+    container: unityci/editor:ubuntu-2020.3.26f1-webgl-0.16.1
+    env:
+      DOTNET_ROOT: '/opt/unity/Editor/Data/NetCoreRuntime'
+    steps:
+      - name: Print Data directory
+        run: ls '/opt/unity/Editor/Data'
+      - name: Print Data Tree
+        run: tree '/opt/unity/Editor/Data'
