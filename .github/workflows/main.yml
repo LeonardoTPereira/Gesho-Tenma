@@ -48,6 +48,9 @@ jobs:
       - name: Install Sonar Scanner
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
         
+      - name: Export Sonar Scanner Path
+        run: export PATH="$PATH:/github/home/.dotnet/tools"
+        
       - name: Run editor Tests
         run: unity-editor -nographics -logFile /dev/stdout -runTests -testPlatform editmode -testResults Tests/editmode-results.xml -enableCodeCoverage -coverageResultsPath Tests -debugCodeOptimization 
         timeout-minutes: 20
