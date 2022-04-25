@@ -34,13 +34,6 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-          
-      - name: Cache SonarScanner
-        id: cache-sonar
-        uses: actions/cache@v2
-        with:
-          path: /github/home/.dotnet/tools/dotnet-sonarscanner
-          key: sonarscanner5
 
       - name: Update
         run: apt update
@@ -58,12 +51,9 @@ jobs:
           
       - name: Install Sonar Scanner
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
-        
-      - name: Print Tools recursive
-        run: ls -R '/github/home/.dotnet/tools'
 
       - name: Generate Solution
-        run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -projectPath '.' -executeMethod UnityEditor.SyncVS.SyncSolution -quit
+        run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -quit
           
       - name: SonarQube analysis
         env:
