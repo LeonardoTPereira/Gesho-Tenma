@@ -44,10 +44,10 @@ namespace Player
 
         private void Start()
         {
-            _primaryBulletData.BulletObject = primaryBullet;
-            _primaryBulletData.BulletSo = primaryBullet.GetComponent<BulletController>().Bullet;
-            _secondaryBulletData.BulletObject = secondaryBullet;
-            _secondaryBulletData.BulletSo = secondaryBullet.GetComponent<BulletController>().Bullet;
+            _primaryBulletData.BulletObject = PrimaryBullet;
+            _primaryBulletData.BulletSo = PrimaryBullet.GetComponent<BulletController>().Bullet;
+            _secondaryBulletData.BulletObject = SecondaryBullet;
+            _secondaryBulletData.BulletSo = SecondaryBullet.GetComponent<BulletController>().Bullet;
         }
 
         public void ShootPrimaryWeapon(InputAction.CallbackContext context)
