@@ -15,8 +15,6 @@ jobs:
     # available list of containers here:
     # https://hub.docker.com/r/unityci/editor/tags?page=1&ordering=last_updated&name=ubuntu-2020.1.17f1-base
     container: unityci/editor:ubuntu-2021.3.1f1-webgl-1.0
-    env:
-      DOTNET_ROOT: '/opt/unity/Editor/Data/NetCoreRuntime'
 
     steps:
       - name: Activate unity
@@ -41,8 +39,13 @@ jobs:
       - name: Install JDK
         run: apt install -y openjdk-11-jre-headless
         
+      - name: Install DotNet SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '5.0.x' # SDK Version to use; x will use the latest version of the 3.1 channel
+          
       - name: Install Sonar Scanner
-        run: $DOTNET_ROOT/dotnet tool install --global dotnet-sonarscanner --version 5.5.3
+        run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
         
       - name: Run editor Tests
         run: unity-editor -nographics -logFile /dev/stdout -runTests -testPlatform editmode -testResults Tests/editmode-results.xml -enableCodeCoverage -coverageResultsPath Tests -debugCodeOptimization 
@@ -89,7 +92,7 @@ jobs:
             ${{ steps.semantic.outputs.new_release_published == 'true' && format('/v:{0}',steps.semantic.outputs.new_release_version) || '' }} \
             /d:sonar.cs.nunit.reportsPaths=Tests/editmode-results.xml,Tests/playmode-results.xml \
             /d:sonar.cs.opencover.reportsPaths=Tests/GGJ2022-opencov/EditMode/TestCoverageResults_0000.xml,Tests/GGJ2022-opencov/PlayMode/TestCoverageResults_0000.xml
-          $DOTNET_ROOT/dotnet build GGJ2022.sln
+          dotnet build GGJ2022.sln
           ./dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
       
   deployPages:
