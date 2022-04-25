@@ -47,6 +47,13 @@ jobs:
         with:
           path: /github/home/.dotnet
           key: dotnet5
+          
+      - name: Cache SonarScanner
+        id: cache-sonar
+        uses: actions/cache@v2
+        with:
+          path: /github/home/.dotnet/tools/dotnet-sonarscanner
+          key: sonarscanner5
 
       - name: Update
         run: apt update
