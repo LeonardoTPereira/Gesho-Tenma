@@ -59,7 +59,7 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
         
       - name: Export Sonar Scanner Path
-        run: export PATH="$PATH:/github/home/.dotnet/tools"
+        run: echo "/github/home/.dotnet/tools" >> $GITHUB_PATH PATH
         
       - name: Print Tools recursive
         run: ls -R '/github/home/.dotnet/tools'
@@ -95,8 +95,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls -l
-          /github/home/.dotnet/tools/dotnet-sonarscanner begin \
+          ls -l && ls ..
+          dotnet-sonarscanner begin \
             /o:leonardotpereira \
             /k:LeonardoTPereira_GGJ2022 \
             /n:GGJ2022 \
@@ -110,7 +110,7 @@ jobs:
             /d:sonar.cs.nunit.reportsPaths=Tests/editmode-results.xml,Tests/playmode-results.xml \
             /d:sonar.cs.opencover.reportsPaths=Tests/GGJ2022-opencov/EditMode/TestCoverageResults_0000.xml,Tests/GGJ2022-opencov/PlayMode/TestCoverageResults_0000.xml
           dotnet build GGJ2022.sln
-          /github/home/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
+          dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
 
   buildWebGL:
     needs: sonarcloud
