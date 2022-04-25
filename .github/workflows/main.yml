@@ -17,7 +17,7 @@ jobs:
     # https://hub.docker.com/r/unityci/editor/tags?page=2&name=2021.3.1
     container: unityci/editor:ubuntu-2021.3.1f1-webgl-1.0
     env:
-      DOTNET_ROOT: '/opt/unity/Editor/Data/NetCore/Sdk-2.2.107'
+      DOTNET_ROOT: '/opt/unity/Editor/Data/NetCoreRuntime'
 
     steps:
       - name: Activate unity
