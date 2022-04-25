@@ -10,6 +10,6 @@ jobs:
       DOTNET_ROOT: '/opt/unity/Editor/Data/NetCoreRuntime'
     steps:
       - name: Print Data directory
-        runs: ls '/opt/unity/Editor/Data'
+        run: ls '/opt/unity/Editor/Data'
       - name: Print Data Tree
-        runs: tree '/opt/unity/Editor/Data'
+        run: tree '/opt/unity/Editor/Data'
