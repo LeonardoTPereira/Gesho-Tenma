@@ -7,9 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     container: unityci/editor:ubuntu-2020.3.26f1-webgl-0.16.1
     env:
-      DOTNET_ROOT: '/opt/unity/Editor/Data/NetCoreRuntime'
+      DOTNET_ROOT: '/opt/unity/Editor/Data/NetCore'
     steps:
-      - name: Print Data directory
-        run: ls '/opt/unity/Editor/Data'
-      - name: Print Data Tree
-        run: tree '/opt/unity/Editor/Data'
+      - name: Print NetCore directory
+        run: ls '/opt/unity/Editor/Data/NetCore'
+      - name: Print NetCore recursive
+        run: ls -R '/opt/unity/Editor/Data/NetCore'
+      - name: Print NetStandard recursive
+        run: ls -R '/opt/unity/Editor/Data/NetStandard'
