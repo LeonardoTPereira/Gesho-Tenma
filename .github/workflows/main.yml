@@ -66,7 +66,7 @@ jobs:
         run: dotnet new sln
 
       - name: Generate Solution
-        run: unity-editor -nographics -logFile /dev/stdout -customBuildName GGJ2022 -projectPath . -executeMethod  UnityEditor.SyncVS.SyncSolution -quit
+        run: unity-editor -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -projectPath '.' -executeMethod UnityEditor.SyncVS.SyncSolution -quit
           
       - name: SonarQube analysis
         env:
