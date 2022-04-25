@@ -26,7 +26,7 @@ namespace Sounds
             public Sound Sound;
         }
 
-        private Dictionary<string, Audio> _audioDictionary = new Dictionary<string, Audio>();
+        private readonly Dictionary<string, Audio> _audioDictionary = new Dictionary<string, Audio>();
 
         [SerializeField] [Header("Sounds")] 
         private List<Sound> soundEffects = new List<Sound>();
