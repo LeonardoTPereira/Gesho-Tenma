@@ -61,9 +61,6 @@ jobs:
         
       - name: Print Tools recursive
         run: ls -R '/github/home/.dotnet/tools'
-        
-      - name: Create Solution
-        run: dotnet new sln
 
       - name: Generate Solution
         run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -projectPath '.' -executeMethod UnityEditor.SyncVS.SyncSolution -quit
