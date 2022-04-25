@@ -9,9 +9,7 @@ jobs:
     env:
       DOTNET_ROOT: '/opt/unity/Editor/Data/NetCore'
     steps:
-      - name: Print NetCore directory
-        run: ls '/opt/unity/Editor/Data/NetCore'
-      - name: Print NetCore recursive
-        run: ls -R '/opt/unity/Editor/Data/NetCore'
-      - name: Print NetStandard recursive
-        run: ls -R '/opt/unity/Editor/Data/NetStandard'
+      - name: Print Data directory
+        run: ls '/opt/unity/Editor/Data'
+      - name: Print Data recursive
+        run: ls -R '/opt/unity/Editor/Data'
