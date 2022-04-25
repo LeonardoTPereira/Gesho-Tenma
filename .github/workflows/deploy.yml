@@ -13,8 +13,8 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     # available list of containers here:
-    # https://hub.docker.com/r/unityci/editor/tags?page=1&ordering=last_updated&name=ubuntu-2020.1.17f1-base
-    container: unityci/editor:ubuntu-2020.3.26f1-webgl-0.16.1
+    # https://hub.docker.com/r/unityci/editor/tags?page=2&name=2021.3.1
+    container: unityci/editor:ubuntu-2021.3.1f1-webgl-1.0
     env:
       DOTNET_ROOT: '/opt/unity/Editor/Data/NetCore/Sdk-2.2.107'
 
@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: Library
-          key: Library-2020.3.16
+          key: Library-2021.3.1
 
       - name: Update
         run: apt update
