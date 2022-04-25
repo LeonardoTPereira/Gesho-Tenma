@@ -61,11 +61,12 @@ jobs:
         
       - name: Print Tools recursive
         run: ls -R '/github/home/.dotnet/tools'
+        
+      - name: Create Solution
+        run: dotnet new sln
 
-      - uses: game-ci/unity-builder@v2
-        with:
-          targetPlatform: WebGL
-          buildName: GGJ2022
+      - name: Generate Solution
+        run: unity-editor -nographics -logFile /dev/stdout -customBuildName GGJ2022 -projectPath . -executeMethod  UnityEditor.SyncVS.SyncSolution -quit
           
       - name: SonarQube analysis
         env:
