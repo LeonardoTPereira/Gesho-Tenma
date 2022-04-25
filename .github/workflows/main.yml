@@ -24,15 +24,16 @@ jobs:
         run: |          
           echo "$UNITY_LICENSE" | tr -d '\r' > UnityLicenseFile.ulf
           unity-editor -nographics -logFile /dev/stdout -manualLicenseFile UnityLicenseFile.ulf -quit | echo "Activation finished"
+      
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Cache Library
-        id: cache-library
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
           path: Library
-          key: Library-2021.3.1
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
           
       - name: Cache SonarScanner
         id: cache-sonar
@@ -83,9 +84,12 @@ jobs:
           path: "Tests/*.xml"
           access-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate Solution
-        run: unity-editor -nographics -logFile /dev/stdout -customBuildName GGJ2022 -projectPath . -executeMethod UnityEditor.SyncVS.SyncSolution -quit
-
+      - uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: WebGL
+          buildName: GGJ2022
+          projectPath: .
+          
       - name: SonarQube analysis
         env:
           FrameworkPathOverride: /opt/unity/Editor/Data/MonoBleedingEdge/
