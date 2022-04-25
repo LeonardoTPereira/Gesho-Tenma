@@ -84,7 +84,7 @@ jobs:
           access-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate Solution
-        run: unity-editor -batchmode -nographics -logFile /dev/stdout -customBuildName GGJ2022 -projectPath . -executeMethod  UnityEditor.SyncVS.SyncSolution -quit
+        run: unity-editor -nographics -logFile /dev/stdout -customBuildName GGJ2022 -projectPath . -executeMethod UnityEditor.SyncVS.SyncSolution -quit
 
       - name: SonarQube analysis
         env:
@@ -92,7 +92,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls -l && ls .. && ls ../..
+          ls
+          find .. -type f -name "*.sln"
           /github/home/.dotnet/tools/dotnet-sonarscanner begin \
             /o:leonardotpereira \
             /k:LeonardoTPereira_GGJ2022 \
