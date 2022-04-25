@@ -33,6 +33,27 @@ jobs:
         with:
           path: Library
           key: Library-2021.3.1
+          
+      - name: Cache JDK
+        id: cache-jdk
+        uses: actions/cache@v2
+        with:
+          path: /usr/lib/jvm/java-11-openjdk-amd64
+          key: jdk11
+      
+      - name: Cache DotNet
+        id: cache-dotnet
+        uses: actions/cache@v2
+        with:
+          path: /github/home/.dotnet
+          key: dotnet5
+          
+      - name: Cache SonarScanner
+        id: cache-sonar
+        uses: actions/cache@v2
+        with:
+          path: /github/home/.dotnet/tools/dotnet-sonarscanner
+          key: sonarscanner5
 
       - name: Update
         run: apt update
@@ -47,6 +68,9 @@ jobs:
           
       - name: Install Sonar Scanner
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
+        
+      - name: Export Sonar Scanner Path
+        run: export PATH="$PATH:/github/home/.dotnet/tools"
         
       - name: Run editor Tests
         run: unity-editor -nographics -logFile /dev/stdout -runTests -testPlatform editmode -testResults Tests/editmode-results.xml -enableCodeCoverage -coverageResultsPath Tests -debugCodeOptimization 
