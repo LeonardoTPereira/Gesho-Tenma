@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     # available list of containers here:
     # https://hub.docker.com/r/unityci/editor/tags?page=1&ordering=last_updated&name=ubuntu-2020.1.17f1-base
-    container: unityci/editor:ubuntu-2021.3.2f1-windows-mono-1.0.1
+    container: unityci/editor:windows-2021.3.2f1-windows-il2cpp-1.0.1
 
     steps:
       - name: Activate unity
@@ -53,7 +53,7 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
 
       - name: Generate Solution
-        run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -buildTarget WebGL -quit
+        run: unity-editor -batchmode -nographics -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -buildTarget WebGL -quit
           
       - name: SonarQube analysis
         env:
