@@ -12,19 +12,13 @@ env:
 jobs:   
   sonarcloud:
     name: SonarCloud
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     # available list of containers here:
     # https://hub.docker.com/r/unityci/editor/tags?page=1&ordering=last_updated&name=ubuntu-2020.1.17f1-base
     container: unityci/editor:windows-2021.3.2f1-windows-il2cpp-1.0.1
 
     steps:
-      - name: Activate unity
-      # exit code is 1 for manual activation
-        continue-on-error: true
-        run: |          
-          echo "$UNITY_LICENSE" | tr -d '\r' > UnityLicenseFile.ulf
-          unity-editor -nographics -logFile /dev/stdout -manualLicenseFile UnityLicenseFile.ulf -quit | echo "Activation finished"
-      
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -52,9 +46,6 @@ jobs:
       - name: Install Sonar Scanner
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
 
-      - name: Generate Solution
-        run: unity-editor -batchmode -nographics -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -buildTarget WebGL -quit
-          
       - name: SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
