@@ -50,8 +50,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls
-          find .. -type f -name "*.sln"
           /github/home/.dotnet/tools/dotnet-sonarscanner begin \
             /o:leonardotpereira \
             /k:LeonardoTPereira_GGJ2022 \
@@ -65,7 +63,7 @@ jobs:
             ${{ steps.semantic.outputs.new_release_published == 'true' && format('/v:{0}',steps.semantic.outputs.new_release_version) || '' }} \
             /d:sonar.cs.nunit.reportsPaths=Tests/editmode-results.xml,Tests/playmode-results.xml \
             /d:sonar.cs.opencover.reportsPaths=Tests/GGJ2022-opencov/EditMode/TestCoverageResults_0000.xml,Tests/GGJ2022-opencov/PlayMode/TestCoverageResults_0000.xml
-          dotnet build GGJ2022.sln
+          dotnet build Solutions/GGJ2022.sln
           /github/home/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
 
   buildWebGL:
