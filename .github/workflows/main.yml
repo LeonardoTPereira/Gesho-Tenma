@@ -52,7 +52,7 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
 
       - name: Generate Solution
-        run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -projectPath . -buildTarget WebGL -quit
+        run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -executeMethod "SyncSolution.Sync" -projectPath . -buildTarget WebGL -quit
           
       - name: SonarQube analysis
         env:
