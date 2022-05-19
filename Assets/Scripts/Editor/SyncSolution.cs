@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEditor;
 using System;
 using System.Reflection;
+using UnityEditor;
+using UnityEngine;
 
-namespace UnityToolbag
+namespace Editor
 {
     public static class SyncSolution
     {
