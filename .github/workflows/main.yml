@@ -78,6 +78,7 @@ jobs:
           /github/home/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
           
   buildWebGL:
+    needs: sonarcloud
     name: Build for WebGL 🖥️
     runs-on: ubuntu-latest
 
