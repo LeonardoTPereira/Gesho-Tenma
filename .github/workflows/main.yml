@@ -54,9 +54,11 @@ jobs:
       - name: Install VSCode
         run: |
           apt-get update -y
-          apt-get install -y snapd
-          snap install --classic code 
-
+          apt-get install -y software-properties-common apt-transport-https wget
+          wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+          add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+          apt-get install -y code
+          
       - name: Generate Solution
         run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -projectPath . -buildTarget WebGL -quit
           
