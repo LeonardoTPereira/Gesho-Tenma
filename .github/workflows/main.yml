@@ -53,8 +53,8 @@ jobs:
         
       - name: Install VSCode
         run: |
-          apt update -y
-          apt install -y snapd
+          apt-get update -y
+          apt-get install -y snapd
           snap install --classic code 
 
       - name: Generate Solution
