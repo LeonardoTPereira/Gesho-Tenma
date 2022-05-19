@@ -52,7 +52,10 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
         
       - name: Install VSCode
-        run: snap install --classic code 
+        run: |
+          apt update
+          apt install snapd
+          snap install --classic code 
 
       - name: Generate Solution
         run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -projectPath . -buildTarget WebGL -quit
