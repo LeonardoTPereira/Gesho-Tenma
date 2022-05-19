@@ -8,3 +8,4 @@ namespace Weapons
         public abstract IEnumerator Move(Vector2 speed, BulletController bulletController);
     }
 }
+
