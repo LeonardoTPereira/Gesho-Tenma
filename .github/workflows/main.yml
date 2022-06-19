@@ -10,13 +10,11 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  buildWebGL:
+    name: Build for WebGL 🖥️
     runs-on: ubuntu-latest
-    # available list of containers here:
-    # https://hub.docker.com/r/unityci/editor/tags?page=1&ordering=last_updated&name=ubuntu-2020.1.17f1-base
-    container: unityci/editor:ubuntu-2021.3.2f1-webgl-1.0.1
-
+    strategy:
+        fail-fast: false
     steps:
       - name: Activate unity
       # exit code is 1 for manual activation
@@ -24,80 +22,29 @@ jobs:
         run: |          
           echo "$UNITY_LICENSE" | tr -d '\r' > UnityLicenseFile.ulf
           unity-editor -nographics -logFile /dev/stdout -manualLicenseFile UnityLicenseFile.ulf -quit | echo "Activation finished"
-      
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          lfs: true
 
-      - uses: actions/cache@v2
+      - name: Restore Library cache
+        uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-      - name: Update
-        run: apt update
-        
-      - name: Install JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-
-      - name: Install DotNet SDK
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '5.0.x' # SDK Version to use; x will use the latest version of the 3.1 channel
-          
-      - name: Install Sonar Scanner
-        run: dotnet tool install --global dotnet-sonarscanner --version 5.5.3
-        
-      - name: Install VSCode
-        run: |
-          apt-get update -y
-          apt-get install -y software-properties-common apt-transport-https wget
-          wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | apt-key add -
-          add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-          apt-get install -y code
-          
-      - name: Generate Solution
-        run: unity-editor -batchmode -nographics -logFile '/dev/stdout' -customBuildName 'GGJ2022' -executeMethod UnityEditor.SyncVS.SyncSolution -projectPath . -buildTarget WebGL -quit
-          
-      - name: SonarQube analysis
+      - name: Build WebGL
+        uses: game-ci/unity-builder@v2
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ls
-          find .. -type f -name "*.sln"
-          /github/home/.dotnet/tools/dotnet-sonarscanner begin \
-            /o:leonardotpereira \
-            /k:LeonardoTPereira_GGJ2022 \
-            /n:GGJ2022 \
-            /d:sonar.verbose=false \
-            /d:sonar.login=$SONAR_TOKEN \
-            /d:sonar.host.url=https://sonarcloud.io \
-            /d:sonar.cpd.exclusions=Assets/Tests/** \
-            /d:sonar.coverage.exclusions=Assets/Tests/** \
-            /d:sonar.exclusions=Packages/** \
-            ${{ steps.semantic.outputs.new_release_published == 'true' && format('/v:{0}',steps.semantic.outputs.new_release_version) || '' }} \
-            /d:sonar.cs.nunit.reportsPaths=Tests/editmode-results.xml,Tests/playmode-results.xml \
-            /d:sonar.cs.opencover.reportsPaths=Tests/GGJ2022-opencov/EditMode/TestCoverageResults_0000.xml,Tests/GGJ2022-opencov/PlayMode/TestCoverageResults_0000.xml
-          dotnet build GGJ2022.sln
-          /github/home/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
-          
-  buildWebGL:
-    needs: sonarcloud
-    name: Build for WebGL 🖥️
-    runs-on: ubuntu-latest
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: WebGL
 
-    steps:
-      - name: Activate unity
-      # exit code is 1 for manual activation
-        continue-on-error: true
-        run: |          
-          echo "$UNITY_LICENSE" | tr -d '\r' > UnityLicenseFile.ulf
-          unity-editor -nographics -logFile /dev/stdout -manualLicenseFile UnityLicenseFile.ulf -quit | echo "Activation finished"
-
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-WebGL
+          path: build/WebGL
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
