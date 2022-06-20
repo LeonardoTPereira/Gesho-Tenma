@@ -1,33 +1,35 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Game.LevelSelection
 {
     public class LevelDescription : MonoBehaviour
     {
-        public string DungeonDescription { get; set; }
-        public string QuestDescription { get; set; }
+        public string BossDescription { get; set; }
+        public string ScenarioDescription { get; set; }
 
         [field:SerializeField] public TextMeshProUGUI DisplayedText { get; set; }
 
-        private bool _isShowingDungeon;
-
         public void CreateDescriptions(LevelData levelData)
         {
-            _isShowingDungeon = false;
-            ChangeDescription();
+            CreateBossDescription(levelData.Boss);
+            CreateScenarioDescription(levelData.Scenario);
+            ShowDescription();
         }
 
-        public void ChangeDescription(InputAction.CallbackContext context)
+        private void CreateScenarioDescription(ScenarioData levelDataScenario)
         {
-            ChangeDescription();
+            ScenarioDescription = levelDataScenario.Name;
         }
 
-        private void ChangeDescription()
+        private void CreateBossDescription(BossData levelDataBoss)
         {
-            _isShowingDungeon = !_isShowingDungeon;
-            DisplayedText.text = _isShowingDungeon ? DungeonDescription : QuestDescription;
+            BossDescription = levelDataBoss.Name;
+        }
+
+        private void ShowDescription()
+        {
+            DisplayedText.text = BossDescription +"\n"+ ScenarioDescription;
         }
     }
 }

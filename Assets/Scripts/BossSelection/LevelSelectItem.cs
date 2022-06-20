@@ -6,7 +6,8 @@ namespace Game.LevelSelection
 {
     public class LevelSelectItem : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
-        public string LevelId { get; set; }
+
+        private Button _button;
 
         [field: SerializeField] public LevelData Level { get; set; }
 
@@ -18,6 +19,7 @@ namespace Game.LevelSelection
         private void Start()
         {
             IsSelected = false;
+            portrait.color = Level.Boss.ColorMask;
             if (!Level.HasCompleted()) return;
             GetComponent<Selectable>().interactable = false;
             portrait.color = Color.gray;

@@ -4,22 +4,11 @@ using UnityEngine;
 
 namespace Game.LevelSelection
 {
-    [CreateAssetMenu(fileName = "SelectedLevels", menuName = "Overlord-Project/SelectedLevels", order = 0)]
-    [Serializable]
+    [CreateAssetMenu(fileName = "SelectedLevels", menuName = "GeshouTenma/SelectedLevels", order = 0)]    [Serializable]
     public class SelectedLevels : ScriptableObject
     {
         [field: SerializeField] public List<LevelData> Levels { get; set; }
         [SerializeField] private int selectedIndex;
-
-        public void Init()
-        {
-            /*Get boss list and initialize Levels
-            var dungeons = questLine.DungeonFileSos;
-            for (var i = 0; i < dungeons.Count; ++i)
-            {
-                Levels[i].Init(questLine, dungeons[i]);
-            }*/
-        }
 
         public LevelData GetCurrentLevel()
         {

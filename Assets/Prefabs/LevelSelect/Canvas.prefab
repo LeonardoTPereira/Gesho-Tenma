@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 3105447847105003182}
   - component: {fileID: 3105447847105003183}
   - component: {fileID: 3105447847105003180}
-  - component: {fileID: 3105447847001723286}
-  - component: {fileID: 3105447847001723287}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -111,49 +109,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3105447847001723286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3105447847105003181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_PointAction: {fileID: -3870404977971287530, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_MoveAction: {fileID: 8469391243016159549, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_SubmitAction: {fileID: 7114057371814014539, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_CancelAction: {fileID: 2772175934309866533, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_LeftClickAction: {fileID: -5323905206356805000, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_MiddleClickAction: {fileID: 3030037810370687720, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_RightClickAction: {fileID: -2532167813284641938, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_ScrollWheelAction: {fileID: 2528990372476742022, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6943954254175770011, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: -3108961010146200224, guid: def0082c807ac704c942a0070848800c, type: 3}
-  m_DeselectOnBackgroundClick: 0
-  m_PointerBehavior: 0
---- !u!114 &3105447847001723287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3105447847105003181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 7071059375254927222}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!1001 &1177499027400523901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -370,7 +325,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation
@@ -558,7 +513,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation
@@ -735,7 +690,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation
@@ -935,7 +890,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation
@@ -1112,7 +1067,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation
@@ -1264,17 +1219,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7589936811935673700, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
   m_PrefabInstance: {fileID: 3105447847403290739}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7071059375254927222 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5276450012048029445, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
-  m_PrefabInstance: {fileID: 3105447847403290739}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7232808658380954400 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5726570444401875795, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
   m_PrefabInstance: {fileID: 3105447847403290739}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7071059375254927222}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
@@ -1317,7 +1267,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation
@@ -1509,7 +1459,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation
@@ -1709,7 +1659,7 @@ PrefabInstance:
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 3105447847001723286}
+      objectReference: {fileID: 0}
     - target: {fileID: 1302385854558196042, guid: 2b2f36233da2fc54284bfed90d51c7d3, type: 3}
       propertyPath: m_DefaultActionMap
       value: MenuNavigation

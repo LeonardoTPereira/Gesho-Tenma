@@ -153,3 +153,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  <BattleScene>k__BackingField:
+    Scene: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
+    SceneName: BattleScene
+    sceneIndex: 0
+    sceneEnabled: 1
+  <BossSelection>k__BackingField:
+    Scene: {fileID: 102900000, guid: 15e354c6c2bd914489bd3b3c9b36fe48, type: 3}
+    SceneName: BossSelection
+    sceneIndex: 1
+    sceneEnabled: 1
+  <EndGame>k__BackingField:
+    Scene: {fileID: 102900000, guid: 15e354c6c2bd914489bd3b3c9b36fe48, type: 3}
+    SceneName: BossSelection
+    sceneIndex: 1
+    sceneEnabled: 1
